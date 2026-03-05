@@ -196,3 +196,62 @@
     requestAnimationFrame(revealVisibleCards);
   });
 })();
+
+(() => {
+  const wrap = document.querySelector(".projects-filters");
+  if (!wrap) return;
+
+  const indicator = wrap.querySelector(".filter-indicator");
+  const buttons = Array.from(wrap.querySelectorAll(".filter-btn"));
+  if (!indicator || buttons.length === 0) return;
+
+  function setActive(btn) {
+    buttons.forEach((b) => {
+      const isOn = b === btn;
+      b.classList.toggle("is-active", isOn);
+      b.setAttribute("aria-pressed", isOn ? "true" : "false");
+    });
+  }
+
+  function moveIndicatorTo(btn) {
+    const wrapRect = wrap.getBoundingClientRect();
+    const r = btn.getBoundingClientRect();
+
+    // padding interno del wrapper (para que quede alineado perfecto)
+    const x = r.left - wrapRect.left;
+    const y = r.top - wrapRect.top;
+
+    wrap.style.setProperty("--fx", `${x}px`);
+    wrap.style.setProperty("--fy", `${y}px`);
+    wrap.style.setProperty("--fw", `${r.width}px`);
+    wrap.style.setProperty("--fh", `${r.height}px`);
+
+    indicator.style.opacity = "1";
+  }
+
+  function sync() {
+    const active =
+      wrap.querySelector('.filter-btn[aria-pressed="true"]') ||
+      wrap.querySelector(".filter-btn.is-active") ||
+      buttons[0];
+
+    moveIndicatorTo(active);
+  }
+
+  // Click
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setActive(btn);
+      moveIndicatorTo(btn);
+    });
+  });
+
+  // Resize / fonts load
+  window.addEventListener("resize", sync);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(sync).catch(() => {});
+  }
+
+  // Init
+  sync();
+})();
