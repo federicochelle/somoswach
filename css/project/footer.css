@@ -1,0 +1,127 @@
+/* =====================================================
+   FOOTER — Project (tokenizado)
+   Funciona con theme dark y con tokens globales
+===================================================== */
+
+.footer {
+  background: var(--footer-bg, var(--color-bg));
+  color: var(--footer-fg, var(--color-text));
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--footer-border, var(--color-border));
+}
+
+.footer-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+/* Desktop 3 columnas */
+@media (min-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.footer-logo img {
+  width: 240px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--footer-muted, var(--color-text-muted));
+  max-width: 320px;
+}
+
+/* =========================
+   COLUMNAS
+========================= */
+
+.footer-kicker {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--footer-dim, rgba(255, 255, 255, 0.45));
+  margin-bottom: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li + li {
+  margin-top: 0.75rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--footer-link, var(--color-text));
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--footer-link-hover, var(--color-primary));
+  opacity: 0.85;
+}
+
+/* =========================
+   SEPARADOR
+========================= */
+
+.footer-separator {
+  height: 1px;
+  margin: 3rem 0 2rem;
+  background: var(--footer-separator, rgba(255, 255, 255, 0.08));
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: var(--footer-dim, rgba(255, 255, 255, 0.45));
+  text-align: center;
+}
+
+/* =========================
+   MOBILE AJUSTES
+========================= */
+
+@media (max-width: 899px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-text {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

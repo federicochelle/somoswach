@@ -1,0 +1,216 @@
+/* =====================================
+   PROJECTS SECTION
+===================================== */
+
+.projects {
+  padding: 0;
+  width: 100%;
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.project-card {
+  position: relative;
+  display: block; /* si es <a> */
+  overflow: hidden;
+
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+}
+
+/* imagen */
+.project-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+/* =====================================
+   OVERLAY
+===================================== */
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 1.5rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* =====================================
+   META — proporcional (desktop grande / mobile respirado)
+===================================== */
+
+.project-meta {
+  color: #fff;
+  max-width: clamp(34ch, 40vw, 56ch);
+}
+
+/* CLIENTE */
+.project-client {
+  margin: 0 0 clamp(6px, 0.8vw, 10px);
+
+  font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+  letter-spacing: clamp(0.1em, 0.25vw, 0.14em);
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* TÍTULO */
+.project-title {
+  margin: 0 0 clamp(6px, 0.9vw, 12px);
+
+  font-size: clamp(1.75rem, 2.2vw, 3rem);
+  font-weight: 700;
+  line-height: clamp(1.08, 1.1vw, 1.16);
+  letter-spacing: 0.01em;
+}
+
+/* ROL / DESCRIPCIÓN */
+.project-role {
+  margin: 0;
+
+  font-size: clamp(0.95rem, 1.05vw, 1.15rem);
+  opacity: 0.85;
+  line-height: clamp(1.25, 1.2vw, 1.45);
+}
+
+/* =====================================
+   MOBILE: respira + no se “encima”
+===================================== */
+
+@media (max-width: 700px) {
+  .project-meta {
+    max-width: 34ch;
+  }
+
+  .project-client {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .project-title {
+    font-size: clamp(1.55rem, 6vw, 1.9rem);
+    line-height: 1.18;
+  }
+
+  .project-role {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  /* opcional pero MUY recomendado para que respire en mobile:
+     (si querés, pegalo; no cambia “estilo”, solo espacio) */
+  .project-overlay {
+    padding: 1.1rem;
+  }
+} /* =====================================
+   HOVER
+===================================== */
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* en mobile no hay hover -> overlay visible siempre */
+  .project-overlay {
+    opacity: 1;
+  }
+
+  .project-card:hover img {
+    transform: none;
+  }
+
+  /* tamaño de título más controlado en mobile */
+  .project-title {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+}
+
+/* =====================================
+   PROJECT REVEAL ANIMATION
+===================================== */
+
+.project-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 700ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card.is-hidden {
+  display: none;
+}
+
+/* cuando aparece */
+.project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Filtro: fade suave */
+.project-card {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.project-card.is-filtered-out {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+/* al terminar la transición, no queremos que ocupe espacio:
+   hacemos que "colapse" con display:none usando JS? NO.
+   Alternativa simple: usamos height/scale? (complica).
+   Solución práctica: ocultar con display:none después de la transición (opcional).
+*/
+
+/* Botones */
+.filter-btn.is-active {
+  opacity: 1;
+}

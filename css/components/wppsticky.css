@@ -1,0 +1,45 @@
+/* =========================
+   WHATSAPP STICKY BUTTON
+========================= */
+
+.whatsapp-sticky {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 3.2rem;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+
+  display: grid;
+  place-items: center;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  z-index: 300;
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.whatsapp-sticky:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-sticky svg {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 600px) {
+  .whatsapp-sticky {
+    width: 52px;
+    height: 52px;
+    right: 1rem;
+    bottom: 3rem;
+  }
+}

@@ -1,0 +1,31 @@
+/* =====================================================
+   main.css — Entry point (WACH)
+   Orden: base -> theme -> layout -> components -> project -> overrides
+===================================================== */
+
+/* 1) BASE (reset + tokens + tipografía) */
+@import "./base/base.css";
+
+/* 2) THEME (cambia tokens, no estructura) */
+@import "./base/theme-dark.css";
+
+/* 3) LAYOUT (containers, grids, helpers) */
+@import "./layout/layout.css";
+
+/* 4) COMPONENTS (librería reutilizable) */
+@import "./components/button.css";
+@import "./components/card.css";
+@import "./components/chip.css";
+@import "./components/gallery.css";
+@import "./components/navbar.css";
+@import "./components/wppsticky.css";
+
+/* 5) PROJECT (solo para esta web) */
+@import "./project/hero.css";
+@import "./project/footer.css";
+@import "./project/gallery.css";
+@import "./project/project-loader.css";
+@import "./project/contact.css";
+
+/* 6) OVERRIDES (ajustes finales puntuales) */
+@import "./project/overrides.css";

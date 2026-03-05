@@ -1,0 +1,57 @@
+/* =====================================================
+   THEME DARK — Cinematic (Productora audiovisual)
+   Activación: <html data-theme="dark">
+===================================================== */
+
+:root[data-theme="dark"] {
+  /* =========================
+     Core colors
+  ========================= */
+
+  --color-bg: #000000; /* fondo principal */
+  --color-surface: #080808; /* cards/superficies */
+  --color-text: rgba(255, 255, 255, 0.92);
+  --color-text-muted: rgba(255, 255, 255, 0.62);
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  /* Marca / acento (minimal, premium) */
+  --color-primary: rgba(255, 255, 255, 0.92);
+  --color-primary-dark: rgba(255, 255, 255, 0.78);
+
+  /* =========================
+     Borders + shadows (dark tuned)
+  ========================= */
+
+  --border: 1px solid var(--color-border);
+
+  --shadow-sm: 0 10px 26px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 18px 46px rgba(0, 0, 0, 0.45);
+
+  /* =========================
+     Header / Nav tokens
+     (para la navbar tokenizada)
+  ========================= */
+
+  --header-bg: rgba(10, 10, 10, 0.68);
+  --header-fg: rgba(255, 255, 255, 0.92);
+  --header-link: rgba(255, 255, 255, 0.92);
+  --header-link-hover: rgba(255, 255, 255, 0.7);
+  --header-border: rgba(255, 255, 255, 0.1);
+
+  /* Footer tokens (opcional) */
+  --footer-bg: #0f1115;
+  --footer-fg: rgba(255, 255, 255, 0.88);
+  --footer-muted: rgba(255, 255, 255, 0.62);
+  --footer-dim: rgba(255, 255, 255, 0.45);
+  --footer-link: rgba(255, 255, 255, 0.88);
+  --footer-link-hover: rgba(255, 255, 255, 1);
+  --footer-separator: rgba(255, 255, 255, 0.08);
+  --footer-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Opcional: si querés que el fondo aplique “sí o sí” */
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}

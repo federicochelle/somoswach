@@ -1,0 +1,201 @@
+/* =====================================================
+   BASE.CSS — Núcleo de la librería
+   Reglas universales, neutras y estables
+===================================================== */
+
+/* =====================================================
+   1. RESET / NORMALIZACIÓN
+===================================================== */
+
+/* Box sizing consistente */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Eliminar márgenes por defecto */
+* {
+  margin: 0;
+}
+
+/* Altura base correcta */
+html,
+body {
+  height: auto;
+}
+
+/* Medios responsivos */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Formularios heredan tipografía */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Evitar overflow de texto */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Quitar estilos de listas */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* Links base */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =====================================================
+   2. TOKENS GLOBALES (VARIABLES NEUTRAS)
+===================================================== */
+
+:root {
+  /* Colores base */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-border: rgba(0, 0, 0, 0.12);
+
+  --color-primary: #333333;
+  --color-primary-dark: #111111;
+
+  /* Tipografías */
+  --font-ui:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+
+  --font-display:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+
+  /* Pesos */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Espaciados */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+  --space-xl: 4rem;
+
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+
+  /* Sombras */
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.12);
+
+  /* Border token */
+  --border: 1px solid var(--color-border);
+
+  /* =========================
+   HEADER / NAV TOKENS
+========================= */
+
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --header-fg: var(--color-text);
+  --header-link: var(--color-text);
+  --header-link-hover: var(--color-primary);
+  --header-border: var(--color-border);
+}
+
+/* =====================================================
+   3. BASE TIPOGRÁFICA
+===================================================== */
+
+body {
+  min-height: 100dvh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-ui);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+small {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* =====================================================
+   4. ELEMENTOS HTML BASE
+===================================================== */
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Focus accesible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   FIN BASE.CSS
+===================================================== */

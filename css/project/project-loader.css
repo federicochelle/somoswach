@@ -1,0 +1,164 @@
+/* =====================================
+   LOADER — Reveal (Idea 2)
+===================================== */
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000000;
+
+  display: grid;
+  place-items: center;
+
+  transition:
+    opacity 320ms ease,
+    visibility 320ms ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Centro */
+.loader-inner {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+/* Contenedor del logo */
+.loader-logo {
+  position: relative;
+
+  width: 220px;
+  height: 90px;
+
+  overflow: hidden;
+}
+
+/* Reveal del logo (máscara por clip-path) */
+.loader-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+
+  /* arranca oculto desde la derecha */
+  clip-path: inset(0 100% 0 0);
+  animation: revealLogo 700ms ease forwards;
+  will-change: clip-path;
+}
+
+/* “Shine” cinematográfico */
+.loader-logo::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  transform: translateX(-130%) skewX(-12deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    transparent
+  );
+
+  animation: shine 700ms ease forwards;
+  will-change: transform;
+}
+
+/* (opcional) micro fade-in del loader */
+.page-loader {
+  animation: loaderFadeIn 220ms ease both;
+}
+
+@keyframes loaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes revealLogo {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes shine {
+  to {
+    transform: translateX(130%) skewX(-12deg);
+  }
+}
+
+/* Respeta accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .loader-logo img,
+  .loader-logo::after,
+  .page-loader {
+    animation: none !important;
+  }
+
+  .loader-logo img {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* =====================================
+   TRANSICIÓN ELEGANTE: Loader -> Web
+===================================== */
+
+/* mientras carga: bloquea scroll (opcional) */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+/* El contenido de la web entra suave */
+html.is-loading main {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* cuando termina el loader */
+html.is-ready main {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 500ms ease,
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Loader: fade-out suave (ya lo tenías, lo reforzamos) */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000000;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity 520ms ease,
+    visibility 520ms ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Respeta reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  html.is-loading main,
+  html.is-ready main {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

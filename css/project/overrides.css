@@ -1,0 +1,191 @@
+/* =====================================================
+   OVERRIDES — AUTOSERVICIO (mockup)
+   Blanco + acentos (azul/verde/amarillo) + sombras suaves
+===================================================== */
+
+:root {
+  /* Tipos */
+  --font-ui:
+    "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-display:
+    "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Base */
+  --color-bg: #f4f6f8; /* fondo gris muy claro */
+  --color-surface: #ffffff; /* cards */
+  --color-text: #121418;
+  --color-text-muted: rgba(18, 20, 24, 0.62);
+  --color-border: rgba(18, 20, 24, 0.1);
+
+  /* Sombras (mockup) */
+  --shadow-sm: 0 14px 30px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 22px 55px rgba(0, 0, 0, 0.14);
+
+  /* Acentos */
+  --brand-blue: #1f6feb;
+  --brand-blue-dark: #1658bd;
+
+  --brand-green: #2ea043;
+  --brand-green-dark: #237d34;
+
+  --brand-yellow: #f2c100;
+  --brand-yellow-dark: #d6aa00;
+
+  /* Header fijo (si lo usás) */
+  --header-height: 68px;
+  --nav-offset: var(--header-height);
+
+  /* Hero overlay */
+  --hero-overlay: rgba(0, 0, 0, 0.28);
+}
+
+/* Global */
+html {
+  scroll-padding-top: var(--nav-offset);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+}
+
+/* Tu base subraya h2 */
+h2 {
+  text-decoration: none;
+}
+
+/* Cards más “mockup” */
+.card {
+  background: var(--color-surface);
+  border: 1px solid rgba(18, 20, 24, 0.08);
+  box-shadow: var(--shadow-sm);
+  border-radius: 3px;
+}
+
+/* Botones base (sin romper tu .btn) */
+.btn {
+  border-radius: 3px;
+}
+
+/* FIX bug de tu btn-primary (var(--color--a) no existe) */
+.btn-primary {
+  border: 1px solid transparent;
+}
+
+/* Botones por color (para el mockup) */
+.btn-blue {
+  background: var(--brand-blue);
+  color: #fff;
+  border: 1px solid transparent;
+}
+.btn-blue:hover {
+  background: var(--brand-blue-dark);
+  color: #fff;
+}
+
+.btn-green {
+  background: var(--brand-green);
+  color: #fff;
+  border: 1px solid transparent;
+}
+.btn-green:hover {
+  background: var(--brand-green-dark);
+  color: #fff;
+}
+
+.btn-yellow {
+  background: var(--brand-yellow);
+  color: #111;
+  border: 1px solid transparent;
+}
+.btn-yellow:hover {
+  background: var(--brand-yellow-dark);
+  color: #111;
+}
+
+/* Outline claro para el botón blanco del hero */
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.92);
+  color: #121418;
+  border: 1px solid rgba(18, 20, 24, 0.12);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+.btn-ghost:hover {
+  background: #fff;
+  border-color: rgba(18, 20, 24, 0.18);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.section-subtitle {
+  font-size: clamp(1.1rem, 1.2vw, 1.1rem);
+  line-height: 1.5;
+  font-weight: 500;
+}
+/* =====================================================
+   overrides.css — Reutilizable (limpio)
+   Solo utilidades y estilos de secciones.
+===================================================== */
+
+/* =========================
+   Sticky header offset (anchor links)
+   Usalo si tu header es sticky.
+========================= */
+
+:root {
+  --header-height: 68px;
+  --nav-offset: var(--header-height);
+
+  /* Útil para hero con imagen/video */
+  --hero-overlay: rgba(0, 0, 0, 0.28);
+}
+
+html {
+  scroll-padding-top: var(--nav-offset);
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   Section typography helpers
+========================= */
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.section-subtitle {
+  font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+  line-height: 1.5;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+/* =========================
+   Optional: simple text helpers
+========================= */
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+body {
+  font-family: "inter", sans-serif;
+}
+h1,
+h2,
+h3,
+.project-title,
+.section-title,
+#hero-text,
+nav {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}

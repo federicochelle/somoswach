@@ -1,0 +1,826 @@
+<!-- =========================
+     HERO — Video Carousel
+========================== -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <!-- Video 1 -->
+          <video
+            class="hero-slide is-active"
+            data-hero-video
+            data-client="Bagovit Solar"
+            data-title="Protección solar"
+            data-description="Film de marca"
+            muted
+            playsinline
+            autoplay
+            preload="metadata"
+            poster="assets/hero-1.webp"
+          >
+            <source src="assets/hero-1.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Video 2 (lazy) -->
+          <video
+            class="hero-slide"
+            data-hero-video
+            data-client="PUNTA CARRETAS"
+            data-title="Historias de Ciudad"
+            data-description="Campaña de temporada"
+            muted
+            playsinline
+            autoplay
+            preload="none"
+            poster="assets/hero-2.webp"
+          >
+            <source data-src="assets/hero-2.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Video 3 (lazy) -->
+          <video
+            class="hero-slide"
+            data-hero-video
+            data-client="ANTEL"
+            data-title="Experienca 5G "
+            data-description="Campaña institucional"
+            muted
+            playsinline
+            autoplay
+            preload="none"
+            poster="assets/hero-3.webp"
+          >
+            <source data-src="assets/hero-3.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <!-- Texto abajo izquierda (CSS lo posiciona) -->
+        <div class="container hero-content">
+          <div class="max-w-lg stack-md" id="hero-text">
+            <p class="text-muted" id="hero-client"></p>
+
+            <h1 id="hero-title" class="hero-title"></h1>
+
+            <p class="section-subtitle" id="hero-description"></p>
+
+            <!-- CTA opcional -->
+            <!--
+      <div class="flex-center hero-cta">
+        <a class="btn btn--primary btn--lg" href="#proyectos">Ver trabajos</a>
+        <a class="btn btn--outline btn--lg" href="#contacto">Contactar</a>
+      </div>
+      -->
+          </div>
+        </div>
+
+        <!-- Barra única abajo -->
+        <div class="hero-progress" aria-hidden="true">
+          <div class="hero-progress-fill" id="hero-progress-fill"></div>
+        </div>
+      </section>
+
+
+
+/* =====================================================
+   HERO — Video Carousel
+===================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: clamp(520px, 92vh, 860px);
+}
+
+/* =========================
+   SAFE VIEWPORT (iOS)
+========================= */
+
+@supports (height: 100svh) {
+  .hero {
+    min-height: min(100svh, 860px);
+  }
+}
+
+@supports (height: 100dvh) {
+  .hero {
+    min-height: min(100dvh, 860px);
+  }
+}
+
+/* =========================
+   MEDIA
+========================= */
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+}
+
+/* =========================
+   VIDEO SLIDES (wipe R->L)
+========================= */
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  z-index: 0;
+  background: #000;
+
+  /* oculto: tapado desde la izquierda */
+  clip-path: inset(0 0 0 100%);
+
+  transition: clip-path 900ms cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: clip-path;
+}
+
+/* visible */
+.hero-slide.is-active {
+  z-index: 2;
+  clip-path: inset(0 0 0 0);
+}
+
+/* salida */
+.hero-slide.is-leaving {
+  z-index: 1;
+  clip-path: inset(0 100% 0 0);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+  background: var(--hero-overlay, rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+/* =========================
+   CONTENT POSITION
+========================= */
+
+.hero-content {
+  position: absolute;
+  left: 0;
+
+  bottom: clamp(80px, 10vh, 140px);
+
+  z-index: 5;
+  width: 100%;
+}
+
+/* limitar ancho (mejor control de saltos) */
+#hero-text {
+  max-width: 980px; /* antes 560px */
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+#hero-client {
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 0.15rem;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 1.03; /* más cerrado */
+}
+
+/* Evita que el título se vaya a 3 líneas en desktop (opcional pro) */
+@media (min-width: 901px) {
+  .hero-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+#hero-description {
+  max-width: 520px; /* un poco más ancho */
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+/* =========================
+   TEXT ANIMATION
+========================= */
+
+#hero-text {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity 800ms ease,
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+/* salida */
+#hero-text.is-leaving {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* entrada */
+#hero-text.is-entering {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.hero-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 8px;
+  z-index: 6;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  width: 100%;
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  background: rgba(255, 255, 255, 0.75);
+  will-change: transform;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 86svh;
+  }
+
+  .hero-content {
+    bottom: clamp(60px, 12vh, 100px);
+
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  /* ancho estable para controlar cortes */
+  #hero-text {
+    max-width: 520px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.45rem);
+    line-height: 1.12;
+  }
+
+  #hero-description {
+    max-width: 460px;
+  }
+
+  .hero-progress {
+    bottom: calc(env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* =========================
+   REDUCE MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: none;
+  }
+
+  #hero-text {
+    transition: none;
+  }
+}
+
+/* =====================================================
+   HERO — tighter text spacing (solo en hero)
+===================================================== */
+
+/* Tu stack-md mete mucho aire: lo reducimos SOLO en el hero */
+#hero-text.stack-md > * + * {
+  margin-top: 0.55rem; /* más juntito */
+}
+
+/* espacio título → descripción */
+#hero-text.stack-md > h1 + p {
+  margin-top: 0.7rem;
+}
+
+/* =========================
+   HERO TEXT POSITION
+========================= */
+
+.hero-content .container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#hero-text {
+  max-width: 640px;
+  margin-left: clamp(24px, 6vw, 120px);
+}
+
+
+
+(function () {
+  const hero = document.querySelector("#hero");
+  if (!hero) return;
+
+  const videos = Array.from(hero.querySelectorAll("[data-hero-video]"));
+  if (videos.length < 2) return;
+
+  const elClient = hero.querySelector("#hero-client");
+  const elTitle = hero.querySelector("#hero-title");
+  const elDesc = hero.querySelector("#hero-description");
+  const heroText = hero.querySelector("#hero-text");
+  const fill = hero.querySelector("#hero-progress-fill");
+
+  // Respeta ahorro de datos y reduce motion
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const reduceMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Estado
+  let index = 0;
+  let isVisible = false;
+  let switching = false;
+
+  // Progress
+  let rafId = null;
+  let startTs = 0;
+  let durationSec = 0;
+
+  function ensureLoaded(videoEl) {
+    const source = videoEl.querySelector("source");
+    if (!source) return;
+
+    if (source.getAttribute("src")) return;
+
+    const dataSrc = source.getAttribute("data-src");
+    if (!dataSrc) return;
+
+    source.setAttribute("src", dataSrc);
+    source.removeAttribute("data-src");
+
+    try {
+      videoEl.load();
+    } catch {}
+  }
+
+  async function safePlay(videoEl) {
+    try {
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") await p.catch(() => {});
+    } catch {}
+  }
+
+  function safePause(videoEl) {
+    try {
+      videoEl.pause();
+    } catch {}
+  }
+
+  function stopProgress() {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
+  function setProgress(p01) {
+    if (!fill) return;
+    const p = Math.max(0, Math.min(1, p01));
+    fill.style.transform = `scaleX(${p})`;
+  }
+
+  function startProgressFor(videoEl) {
+    stopProgress();
+    setProgress(0);
+
+    const d =
+      Number.isFinite(videoEl.duration) && videoEl.duration > 0
+        ? videoEl.duration
+        : 6;
+
+    durationSec = d;
+    startTs = performance.now();
+
+    const tick = () => {
+      if (!isVisible) return;
+      const elapsed = (performance.now() - startTs) / 1000;
+      setProgress(elapsed / durationSec);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function preloadNext() {
+    const nextIndex = (index + 1) % videos.length;
+    ensureLoaded(videos[nextIndex]);
+  }
+
+  // Animación de texto (fade + slide)
+  function setTextFrom(videoEl) {
+    const client = videoEl.dataset.client || "";
+    const title = videoEl.dataset.title || "";
+    const desc = videoEl.dataset.description || "";
+
+    // si no existe heroText, cambia directo
+    if (!heroText) {
+      if (elClient) elClient.textContent = client;
+      if (elTitle) elTitle.textContent = title;
+      if (elDesc) elDesc.textContent = desc;
+      return;
+    }
+
+    heroText.classList.remove("is-entering");
+    heroText.classList.add("is-leaving");
+
+    // cambiar texto en el medio
+    window.setTimeout(() => {
+      if (elClient) elClient.textContent = client;
+      if (elTitle) elTitle.textContent = title;
+      if (elDesc) elDesc.textContent = desc;
+
+      heroText.classList.remove("is-leaving");
+      heroText.classList.add("is-entering");
+
+      requestAnimationFrame(() => {
+        heroText.classList.remove("is-entering");
+      });
+    }, 580);
+  }
+
+  function setActive(nextIndex) {
+    if (nextIndex === index) return;
+    if (switching) return;
+
+    switching = true;
+
+    const current = videos[index];
+    const nextVideo = videos[nextIndex];
+
+    current.loop = false;
+    nextVideo.loop = false;
+
+    // wipe: sacar el actual
+    current.classList.remove("is-active");
+    current.classList.add("is-leaving");
+
+    safePause(current);
+    try {
+      current.currentTime = 0;
+    } catch {}
+
+    // actualizar index
+    index = nextIndex;
+
+    // cargar y setear texto
+    ensureLoaded(nextVideo);
+    setTextFrom(nextVideo);
+
+    // evitar flash del poster: play antes si está visible
+    if (isVisible) safePlay(nextVideo);
+
+    // mostrar
+    nextVideo.classList.add("is-active");
+
+    // limpiar leaving
+    window.setTimeout(() => {
+      current.classList.remove("is-leaving");
+    }, 920); // ~900ms CSS
+
+    // progress + preload
+    if (isVisible) {
+      preloadNext();
+      startProgressFor(nextVideo);
+    } else {
+      stopProgress();
+      setProgress(0);
+    }
+
+    requestAnimationFrame(() => {
+      switching = false;
+    });
+  }
+
+  function next() {
+    setActive((index + 1) % videos.length);
+  }
+
+  // Ahorro de datos / reduce motion: no reproducir
+  if (saveData || reduceMotion) {
+    videos.forEach((v, i) => {
+      v.loop = false;
+      safePause(v);
+      v.classList.toggle("is-active", i === 0);
+      v.classList.remove("is-leaving");
+    });
+    setTextFrom(videos[0]);
+    setProgress(0);
+    return;
+  }
+
+  // Avanzar al terminar el video activo
+  videos.forEach((v, i) => {
+    v.loop = false;
+
+    v.addEventListener("ended", () => {
+      if (!isVisible) return;
+      if (i !== index) return;
+      next();
+    });
+
+    // Cuando llega la duración real, recalcular barra
+    v.addEventListener("loadedmetadata", () => {
+      if (!isVisible) return;
+      if (i !== index) return;
+      startProgressFor(v);
+    });
+  });
+
+  // Pausar si pestaña oculta
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopProgress();
+      safePause(videos[index]);
+    } else if (isVisible) {
+      ensureLoaded(videos[index]);
+      safePlay(videos[index]);
+      preloadNext();
+      startProgressFor(videos[index]);
+    }
+  });
+
+  // Solo corre si hero visible
+  const io = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+      isVisible = !!(entry && entry.isIntersecting);
+
+      if (isVisible) {
+        ensureLoaded(videos[index]);
+        safePlay(videos[index]);
+        preloadNext();
+        startProgressFor(videos[index]);
+      } else {
+        stopProgress();
+        safePause(videos[index]);
+        setProgress(0);
+      }
+    },
+    { threshold: 0.35 },
+  );
+
+  io.observe(hero);
+
+  // INIT
+  videos.forEach((v, i) => {
+    v.loop = false;
+    v.classList.toggle("is-active", i === 0);
+    v.classList.remove("is-leaving");
+
+    if (i === 0) ensureLoaded(v);
+    else safePause(v);
+  });
+
+  setTextFrom(videos[0]);
+  setProgress(0);
+})();
+
+
+
+
+
+
+
+<!-- =========================
+       CONTACT
+  ========================== -->
+      <section
+        class="contact-section"
+        id="contacto"
+        aria-labelledby="contact-title"
+      >
+        <div class="container contact-container">
+          <header class="contact-header">
+            <h2 class="contact-title" id="contact-title">Contacto</h2>
+            <p class="contact-subtitle">Consultas y proyectos.</p>
+          </header>
+
+          <form class="contact-form" method="post" action="#">
+            <div class="form-row">
+              <label class="sr-only" for="contact-name">Nombre</label>
+              <input
+                id="contact-name"
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                autocomplete="name"
+                required
+              />
+
+              <label class="sr-only" for="contact-email">Email</label>
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <label class="sr-only" for="contact-company">Marca / Empresa</label>
+            <input
+              id="contact-company"
+              type="text"
+              name="company"
+              placeholder="Marca / Empresa"
+              autocomplete="organization"
+            />
+
+            <label class="sr-only" for="contact-message">Mensaje</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder="Mensaje"
+              rows="5"
+              required
+            ></textarea
+            >-
+
+            <button type="submit" class="contact-button">
+              Enviar mensaje →
+            </button>
+          </form>
+        </div>
+      </section>
+
+
+
+
+            <!-- =========================
+       CONTACT
+  ========================== -->
+      <section
+        class="contact-section"
+        id="contacto"
+        aria-labelledby="contact-title"
+      >
+        <div class="container contact-container">
+          <header class="contact-header">
+            <h2 class="contact-title" id="contact-title">Contacto</h2>
+            <p class="contact-subtitle">Consultas y proyectos.</p>
+          </header>
+
+          <form class="contact-form" method="post" action="#">
+            <div class="form-row">
+              <input
+                id="contact-name"
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                required
+              />
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <input
+              id="contact-company"
+              type="text"
+              name="company"
+              placeholder="Marca / Empresa"
+            />
+
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder="Mensaje"
+              rows="5"
+              required
+            ></textarea>
+
+            <button type="submit" class="contact-button">
+              Enviar mensaje →
+            </button>
+          </form>
+        </div>
+      </section>
+
+
+    <footer class="footer" id="contacto">
+      <div class="container container-wide footer-grid">
+        <!-- Marca -->
+        <div class="footer-col footer-brand">
+          <a href="#top" class="footer-logo" aria-label="WACH - Ir al inicio">
+            <img src="assets/navbar.webp" alt="WACH" />
+          </a>
+
+          <p class="footer-text">
+            Productora audiovisual con base en Montevideo, Uruguay.
+          </p>
+          <p class="footer-text">
+            Estrategia, producción y post para proyectos de alto impacto.
+          </p>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-col footer-contact">
+          <h2 class="footer-contact-title">Contacto</h2>
+
+          <ul class="footer-links footer-links-contact">
+            <li>
+              <button class="footer-contact-link copy-email">
+                <span class="footer-contact-label">MAIL</span>
+
+                <span class="footer-contact-value" id="email-address">
+                  hola@somoswach.com
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <a
+                class="footer-contact-link"
+                href="https://instagram.com/somos.wach"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="footer-contact-label">Instagram</span>
+                <span class="footer-contact-value">@somos.wach</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="footer-contact-link"
+                href="https://vimeo.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="footer-contact-label">Vimeo</span>
+                <span class="footer-contact-value">Ver trabajos</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="footer-contact-link"
+                href="https://wa.me.com/59894388280"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="footer-contact-label">TELÉFONO</span>
+                <span class="footer-contact-value">+598 94 388 280</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-separator"></div>
+
+      <div class="container container-wide footer-bottom">
+        <p class="footer-copy">© <span id="year"></span> WACH</p>
+      </div>
+    </footer>
+   
