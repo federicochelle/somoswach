@@ -109,7 +109,9 @@
   color: var(--header-link);
   font-weight: var(--font-weight-medium);
   transition: color var(--transition-fast);
-  font-size: 1rem;
+
+  font-family: "bebas neue", system-ui, sans-serif;
+  font-size: 1.5rem;
 }
 
 .nav-link:hover {

@@ -15,6 +15,7 @@
 
   if (reduceMotion) {
     hero.classList.add("is-animated");
+
     return;
   }
 
@@ -214,27 +215,29 @@
   }
 
   function moveIndicatorTo(btn) {
-    const wrapRect = wrap.getBoundingClientRect();
-    const r = btn.getBoundingClientRect();
-
-    // padding interno del wrapper (para que quede alineado perfecto)
-    const x = r.left - wrapRect.left;
-    const y = r.top - wrapRect.top;
+    // offsetLeft/Top es MÁS estable que getBoundingClientRect acá
+    const x = btn.offsetLeft;
+    const y = btn.offsetTop;
 
     wrap.style.setProperty("--fx", `${x}px`);
     wrap.style.setProperty("--fy", `${y}px`);
-    wrap.style.setProperty("--fw", `${r.width}px`);
-    wrap.style.setProperty("--fh", `${r.height}px`);
+    wrap.style.setProperty("--fw", `${btn.offsetWidth}px`);
+    wrap.style.setProperty("--fh", `${btn.offsetHeight}px`);
 
-    indicator.style.opacity = "1";
+    // prenderlo recién cuando ya está sincronizado
+    wrap.classList.add("is-ready");
+  }
+
+  function getActiveBtn() {
+    return (
+      wrap.querySelector('.filter-btn[aria-pressed="true"]') ||
+      wrap.querySelector(".filter-btn.is-active") ||
+      buttons[0]
+    );
   }
 
   function sync() {
-    const active =
-      wrap.querySelector('.filter-btn[aria-pressed="true"]') ||
-      wrap.querySelector(".filter-btn.is-active") ||
-      buttons[0];
-
+    const active = getActiveBtn();
     moveIndicatorTo(active);
   }
 
@@ -246,12 +249,25 @@
     });
   });
 
-  // Resize / fonts load
+  // Init: esperar 2 frames (layout + fonts + anims)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(sync);
+  });
+
+  // Resize
   window.addEventListener("resize", sync);
+
+  // Fonts ready
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(sync).catch(() => {});
+    document.fonts.ready
+      .then(() => {
+        requestAnimationFrame(sync);
+      })
+      .catch(() => {});
   }
 
-  // Init
-  sync();
+  // Por si carga tarde (iOS / Safari a veces)
+  window.addEventListener("load", () => {
+    requestAnimationFrame(sync);
+  });
 })();
