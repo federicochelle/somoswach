@@ -47,14 +47,13 @@ html {
   color: var(--color-text-muted);
 }
 body {
-  font-family: "bebas neue", sans-serif;
+  font-family: "roboto", sans-serif;
   font-weight: var(--font-weight-regular);
   letter-spacing: 0.07em;
 }
 h1,
 h2,
 h3,
-.project-meta,
 .section-title,
 #hero-text {
   font-family: "Bebas Neue", sans-serif;

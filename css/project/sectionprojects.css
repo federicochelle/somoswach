@@ -70,8 +70,8 @@
 #projects-label {
   margin-bottom: 0.85rem;
 
-  font-size: 1.2rem;
-  letter-spacing: 0.16em;
+  font-size: 0.875rem;
+
   text-transform: uppercase;
 
   color: var(--color-text-muted);
@@ -222,7 +222,7 @@
 .filter-btn {
   position: relative;
   z-index: 2;
-
+  font-size: 2rem;
   appearance: none;
   border: 0;
   background: transparent;
