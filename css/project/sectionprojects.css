@@ -210,7 +210,7 @@
   border-radius: 999px;
 
   border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
-  background: color-mix(in srgb, var(--color-bg) 70%, transparent);
+  background: none;
 
   backdrop-filter: blur(10px);
 
@@ -295,7 +295,13 @@
 @media (max-width: 700px) {
   .projects-filters {
     gap: 0.4rem;
+    text
     padding: 0.4rem;
+    border-radius: 0;
+    border: none;
+  background: none;
+
+  backdrop-filter: none;
   }
 
   .filter-btn {
@@ -345,4 +351,54 @@
 
 .projects-filters.is-ready .filter-indicator {
   opacity: 1;
+}
+
+/* =====================================================
+   PROJECTS HERO — background image + overlay extendido
+===================================================== */
+
+.projects-hero {
+  position: relative;
+  overflow: visible; /* importante para que pueda bajar */
+}
+
+/* capas */
+.projects-hero .hero-media,
+.projects-hero .hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* imagen */
+.projects-hero-bg {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: calc(100% + 300px); /* cuánto invade la sección siguiente */
+
+  background-image: url("../../assets/backgroundd.webp");
+  background-size: cover;
+  background-position: center;
+
+  z-index: -2;
+}
+
+/* overlay oscuro */
+.projects-hero .hero-overlay {
+  height: calc(100% + 300px);
+
+  background: rgba(0, 0, 0, 0.75);
+
+  z-index: 0;
+}
+
+/* contenido */
+.projects-hero .hero-content {
+  position: relative;
+  z-index: 2;
 }

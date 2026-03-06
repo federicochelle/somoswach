@@ -76,12 +76,7 @@
 
           <a class="nav-link" href="#footer">Contacto</a>
 
-          <!-- Language switch -->
-          <button class="lang-switch" id="lang-switch" data-lang="es">
-            <span class="lang lang-es active">ES</span>
-            <span class="lang-divider">/</span>
-            <span class="lang lang-en">EN</span>
-          </button>
+          
         </nav>
       </div>
     </header>
@@ -326,66 +321,89 @@
       </section>
     </main>
     <!-- FOOTER -->
-    <footer class="footer" id="footer">
-      <div class="container container-wide footer-grid">
-        <!-- Marca -->
-        <div class="footer-col footer-brand">
-          <a href="#top" class="footer-logo" aria-label="WACH - Ir al inicio">
-            <img src="../assets/navbar.webp" alt="WACH" />
-          </a>
+<footer class="footer" id="footer">
 
-          <p class="footer-text">
-            Productora audiovisual para marcas. Estrategia, producción y post
-            para proyectos de alto impacto.
-          </p>
-        </div>
+  <div class="container container-wide footer-grid">
 
-        <!-- Navegación -->
-        <div class="footer-col">
-          <p class="footer-kicker">Explorar</p>
-          <ul class="footer-links">
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#servicios">Servicios</a></li>
+    <!-- Marca -->
+    <div class="footer-col footer-brand">
+      <a href="#top" class="footer-logo" aria-label="WACH - Ir al inicio">
+        <img src="../assets/navbar.webp" alt="WACH">
+      </a>
 
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#top">Volver arriba</a></li>
-          </ul>
-        </div>
+      <p class="footer-text">
+        Productora audiovisual para marcas. Estrategia, producción y post
+        para proyectos de alto impacto.
+      </p>
+    </div>
 
-        <!-- Contacto -->
-        <div class="footer-col">
-          <p class="footer-kicker">Contacto</p>
-          <ul class="footer-links">
-            <li>
-              <a href="mailto:hola@somoswach.com">hola@somoswach.com</a>
-            </li>
-            <li>
-              <a
-                href="https://instagram.com/somoswach"
-                target="_blank"
-                rel="noopener"
-              >
-                Instagram: @somoswach
-              </a>
-            </li>
-            <li>
-              <span
-                class="footer-text"
-                style="display: block; margin-top: 0.25rem"
-              >
-                Montevideo, Uruguay
-              </span>
-            </li>
-          </ul>
-        </div>
+    <!-- Navegación -->
+    <div class="footer-col">
+      <p class="footer-kicker">Explorar</p>
+
+      <ul class="footer-links">
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#top">Volver arriba</a></li>
+      </ul>
+    </div>
+
+    <!-- Contacto -->
+    <div class="footer-col">
+      <div class="footer-contact">
+
+        <p class="footer-kicker">Contacto</p>
+
+        <a href="mailto:hola@somoswach.com" class="contact-item">
+          <svg viewBox="0 0 24 24" class="contact-icon" aria-hidden="true">
+            <path d="M22 6l-10 7L2 6"/>
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+          </svg>
+          hola@somoswach.com
+        </a>
+
+        <a href="https://instagram.com/somos.wach"
+           class="contact-item"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" class="contact-icon" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1.5"/>
+          </svg>
+          somos.wach
+        </a>
+
+        <a href="https://wa.me/59894388280"
+           class="contact-item"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" class="contact-icon" aria-hidden="true">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/>
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1"/>
+          </svg>
+          +598 94 388 280
+        </a>
+
+        <p class="contact-location">
+          Montevideo, Uruguay
+        </p>
+
       </div>
+    </div>
 
-      <div class="footer-separator"></div>
+  </div>
 
-      <div class="container container-wide footer-bottom">
-        <p class="footer-copy">© <span id="year"></span> WACH</p>
-      </div>
-    </footer>
+  <div class="footer-separator"></div>
+
+  <div class="container container-wide footer-bottom">
+    <p class="footer-copy">
+      © <span id="year"></span> WACH
+    </p>
+  </div>
+
+</footer>
     <!-- Vimeo Player API -->
 <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="../js/pagevideo.js"></script>

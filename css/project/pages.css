@@ -400,7 +400,7 @@
 .player-hitarea {
   position: absolute;
   inset: 0;
-  z-index: 4; /* iframe queda abajo, UI está en 5 */
+  z-index: 4;
   cursor: pointer;
   background: transparent;
 }
@@ -409,28 +409,29 @@
    UI comportamiento tipo reproductor
 ========================= */
 
-/* La UI por defecto oculta */
 .player-ui {
   opacity: 0;
   transition: opacity 600ms ease;
 }
 
-/* Aparece si hay hover o si JS activa ui-active */
-.project-video-inner:hover .player-ui,
+/* SOLO JS decide cuándo se muestra */
 .project-video-inner.ui-active .player-ui {
   opacity: 1;
 }
 
-/* Cuando está reproduciendo, la UI se oculta (pero puede volver por hover o ui-active) */
+/* si está reproduciendo, por defecto oculta */
 .project-video-inner.is-playing .player-ui {
   opacity: 0;
 }
 
-/* IMPORTANTE: mientras reproduce, hover y ui-active deben GANAR */
-.project-video-inner.is-playing:hover .player-ui,
+/* si JS activa ui-active mientras reproduce, vuelve a aparecer */
 .project-video-inner.is-playing.ui-active .player-ui {
   opacity: 1;
 }
+
+/* =========================
+   ICONS / BUTTONS
+========================= */
 
 .player-icon {
   width: 18px;
@@ -457,28 +458,21 @@
   gap: 8px;
 }
 
-/* slider base */
-
 .player-volume-range {
   width: 80px;
   height: 4px;
-
   appearance: none;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 999px;
-
   outline: none;
   cursor: pointer;
 }
-
-/* barra activa */
 
 .player-volume-range::-webkit-slider-thumb {
   appearance: none;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-
   background: white;
   cursor: pointer;
 }
@@ -487,7 +481,6 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-
   background: white;
   border: none;
   cursor: pointer;
