@@ -98,6 +98,24 @@
   // FULLSCREEN
   // =========================
 
+  const enterFullscreen = () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      wrap.classList.add("is-fs");
+      document.body.classList.add("is-locked");
+      return;
+    }
+
+    const isFs = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if (isFs) return;
+
+    const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
+
+    if (req) req.call(wrap);
+  };
+
   const toggleFullscreen = () => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
