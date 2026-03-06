@@ -29,3 +29,55 @@
 
 /* 6) OVERRIDES (ajustes finales puntuales) */
 @import "./project/overrides.css";
+
+/* ==============================
+   GLOBAL TYPOGRAPHY SCALE TEST
+============================== */
+
+h1 {
+  font-size: clamp(3.4rem, 7.5vw, 7rem) !important;
+  line-height: 1.1 !important;
+}
+
+h2 {
+  font-size: clamp(2.6rem, 5.5vw, 5rem) !important;
+  line-height: 1.1 !important;
+}
+
+h3 {
+  font-size: clamp(2rem, 4.5vw, 3.8rem) !important;
+  line-height: 1.1 !important;
+}
+
+h4 {
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem) !important;
+  line-height: 1.15 !important;
+}
+
+h5 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem) !important;
+  line-height: 1.2 !important;
+}
+
+h6 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+  line-height: 1.2 !important;
+}
+
+p {
+  font-size: clamp(1rem, 1.2vw, 1.2rem) !important;
+  line-height: 1.6 !important;
+}
+
+small {
+  font-size: clamp(0.85rem, 0.9vw, 0.95rem) !important;
+}
+
+li {
+  font-size: clamp(1rem, 1.2vw, 1.2rem) !important;
+  line-height: 1.6 !important;
+}
+
+button {
+  font-size: clamp(1rem, 1.2vw, 1.15rem) !important;
+}

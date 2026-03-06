@@ -90,47 +90,6 @@
 }
 
 /* =========================
-   BIG PLAY (centro)
-========================= */
-
-.player-bigplay {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 76px;
-  height: 76px;
-  border-radius: 999px;
-
-  display: grid;
-  place-items: center;
-
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(10px);
-
-  pointer-events: auto;
-  cursor: pointer;
-
-  transition:
-    transform 220ms ease,
-    background 220ms ease,
-    opacity 220ms ease;
-}
-
-.player-bigplay:hover {
-  transform: translate(-50%, -50%) scale(1.04);
-  background: rgba(0, 0, 0, 0.65);
-}
-
-/* ocultar big play cuando está reproduciendo */
-.project-video-inner.is-playing .player-bigplay {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* =========================
    CONTROLES (barra abajo)
 ========================= */
 
@@ -273,6 +232,15 @@
   padding-block: 0;
 }
 
+/* Fade más lento */
+.player-ui {
+  transition: opacity 600ms ease;
+}
+
+/* Cuando está reproduciendo, escondemos la UI (pero puede volver con hover / ui-active si querés) */
+.project-video-inner.is-playing .player-ui {
+  opacity: 0;
+}
 /* =====================================================
    PROJECT META (OPCIÓN B — Impacto / Más grande)
    Scopeado para que NO pise la grilla del index
@@ -424,4 +392,103 @@
   .section.project .project-description {
     max-width: none;
   }
+}
+
+/* =========================
+   HIT AREA (click en todo el video)
+========================= */
+.player-hitarea {
+  position: absolute;
+  inset: 0;
+  z-index: 4; /* iframe queda abajo, UI está en 5 */
+  cursor: pointer;
+  background: transparent;
+}
+
+/* =========================
+   UI comportamiento tipo reproductor
+========================= */
+
+/* La UI por defecto oculta */
+.player-ui {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+/* Aparece si hay hover o si JS activa ui-active */
+.project-video-inner:hover .player-ui,
+.project-video-inner.ui-active .player-ui {
+  opacity: 1;
+}
+
+/* Cuando está reproduciendo, la UI se oculta (pero puede volver por hover o ui-active) */
+.project-video-inner.is-playing .player-ui {
+  opacity: 0;
+}
+
+/* IMPORTANTE: mientras reproduce, hover y ui-active deben GANAR */
+.project-video-inner.is-playing:hover .player-ui,
+.project-video-inner.is-playing.ui-active .player-ui {
+  opacity: 1;
+}
+
+.player-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+}
+
+.player-btn {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.player-btn:hover {
+  color: white;
+}
+
+/* =========================
+   VOLUME
+========================= */
+
+.player-volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* slider base */
+
+.player-volume-range {
+  width: 80px;
+  height: 4px;
+
+  appearance: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+
+  outline: none;
+  cursor: pointer;
+}
+
+/* barra activa */
+
+.player-volume-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  background: white;
+  cursor: pointer;
+}
+
+.player-volume-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  background: white;
+  border: none;
+  cursor: pointer;
 }
