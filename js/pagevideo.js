@@ -98,17 +98,18 @@
   // FULLSCREEN
   // =========================
 
-  const enterFullscreen = () => {
-    const isFs = document.fullscreenElement || document.webkitFullscreenElement;
-
-    if (isFs) return;
-
-    const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-
-    if (req) req.call(wrap);
-  };
-
   const toggleFullscreen = () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      const isFakeFs = wrap.classList.contains("is-fs");
+
+      wrap.classList.toggle("is-fs", !isFakeFs);
+      document.body.classList.toggle("is-locked", !isFakeFs);
+
+      return;
+    }
+
     const isFs = document.fullscreenElement || document.webkitFullscreenElement;
 
     if (!isFs) {
@@ -121,7 +122,6 @@
       if (exit) exit.call(document);
     }
   };
-
   // =========================
   // PLAY / PAUSE
   // =========================

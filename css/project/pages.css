@@ -21,7 +21,7 @@
 /* mobile: evita bugs de barra del navegador */
 @media (max-width: 768px) {
   .project-video-inner {
-    height: 70svh; /* ajustá 60–80svh a gusto */
+    height: 100svh; /* ajustá 60–80svh a gusto */
   }
 }
 
@@ -495,6 +495,41 @@
   background:
     linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("../../assets/backgroundd.webp") left/cover no-repeat !important;
+  height: calc(100% + 300px) !important;
 }
 
 /* fondo */
+
+/* =========================
+   MOBILE FAKE FULLSCREEN
+========================= */
+@media (max-width: 768px) {
+  .project-video-inner.is-fs {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100svh;
+    z-index: 9999;
+    background: #000;
+  }
+
+  .project-video-inner.is-fs iframe {
+    width: 100vw;
+    height: 100svh;
+    min-width: 100vw;
+    min-height: 100svh;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .project-video-inner.is-fs .player-controls {
+    width: calc(100% - 20px);
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
+/* bloquear scroll cuando entra fullscreen fake */
+body.is-locked {
+  overflow: hidden;
+}
