@@ -19,11 +19,11 @@
       rel="stylesheet"
     />
     <!-- CSS principal -->
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/project/sectionprojects.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/project/sectionprojects.css" />
 
     <!-- Preload del video (mejora performance) -->
-    <link rel="preload" as="video" href="assets/hero.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="../assets/hero.mp4" type="video/mp4" />
   </head>
 
   <body>
@@ -33,7 +33,7 @@
         <div class="loader-logo" aria-label="WACH">
           <!-- Usá tu logo sin fondo (SVG o PNG/WebP) -->
           <img
-            src="assets/navbar.webp"
+            src="../assets/navbar.webp"
             alt="WACH"
             width="220"
             height="90"
@@ -52,7 +52,7 @@
         <a class="brand-logo-only" href="#top" aria-label="Ir al inicio">
           <img
             class="brand-logo"
-            src="assets/navbar.webp"
+            src="../assets/navbar.webp"
             alt="WACH"
             width="140"
             height="44"
@@ -62,11 +62,11 @@
 
         <!-- Nav desktop -->
         <nav class="nav nav-desktop" aria-label="Navegación principal">
-          <a class="nav-link" href="#projects-hero">PROYECTOS</a>
-          <a class="nav-link" href="pages/nosotros.html">NOSOTROS</a>
-          <a class="nav-link" href="#servicios">SERVICIOS</a>
+          <a class="nav-link" href="#projects-hero">PROJECTS</a>
+          <a class="nav-link" href="nosotrosen.html">ABOUT</a>
+          <a class="nav-link" href="#servicios">SERVICES</a>
 
-          <a class="nav-link" href="#footer">CONTACTO</a>
+          <a class="nav-link" href="#footer">CONTACT</a>
 
           <!-- Language switch -->
 
@@ -77,13 +77,11 @@
               type="button"
               aria-expanded="false"
             >
-              <a href="en/indexen.html" class="lang-option">
-                <span class="lang-current-text">ES</span>
-                <img class="lang-flag" src="assets/espain.webp" alt="Español" />
+              <a href="../index.html" class="lang-option">
+                <span class="lang-current-text">EN</span>
+                <img class="lang-flag" src="../assets/usa.webp" alt="English" />
               </a>
             </button>
-
-            <div class="lang-menu" id="lang-menu"></div>
           </div>
           <!-- CTA -->
         </nav>
@@ -107,13 +105,11 @@
       <!-- Menú mobile -->
       <div class="mobile-menu" id="mobile-menu" hidden>
         <nav class="nav nav-mobile" aria-label="Menú móvil">
-          <a class="nav-link" href="#projects-hero" data-menu-close
-            >PROYECTOS</a
-          >
-          <a class="nav-link" href="pages/nosotros.html">NOSOTROS</a>
-          <a class="nav-link" href="#servicios" data-menu-close>SERVICIOS</a>
+          <a class="nav-link" href="#projects-hero" data-menu-close>PROJECTS</a>
+          <a class="nav-link" href="nosotrosen.html">ABOUT</a>
+          <a class="nav-link" href="#servicios" data-menu-close>SERVICES</a>
 
-          <a class="nav-link" href="#footer" data-menu-close>CONTACTO</a>
+          <a class="nav-link" href="#footer" data-menu-close>CONTACT</a>
 
           <!-- Language switch -->
 
@@ -124,9 +120,9 @@
               type="button"
               aria-expanded="false"
             >
-              <a href="en/indexen.html" class="lang-option">
-                <span class="lang-current-text">ES</span>
-                <img class="lang-flag" src="assets/espain.webp" alt="Español" />
+              <a href="../index.html" class="lang-option">
+                <span class="lang-current-text">EN</span>
+                <img class="lang-flag" src="../assets/usa.webp" alt="English" />
               </a>
             </button>
           </div>
@@ -151,9 +147,9 @@
             autoplay
             loop
             preload="metadata"
-            poster="assets/hero-1.webp"
+            poster="../assets/hero-1.webp"
           >
-            <source src="assets/hero-1.mp4" type="video/mp4" />
+            <source src="../assets/hero-1.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -197,8 +193,8 @@
 
             <!-- Título grande “lista” -->
             <h1 id="projects-title" class="hero-title projects-title">
-              Explora nuestros<br />
-              proyectos...<br />
+              Explore our<br />
+              projects...<br />
             </h1>
 
             <!-- Filtros -->
@@ -213,7 +209,7 @@
                 data-filter="all"
                 aria-pressed="true"
               >
-                Todos
+                All
               </button>
 
               <button
@@ -251,391 +247,190 @@
         <div class="projects-grid">
           <!-- Proyecto 1 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
+            <img src="../assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
             <div class="project-overlay">
               <div class="project-meta">
                 <p class="project-client">Itaú</p>
-                <h3 class="project-title">Proyecto Audiovisual</h3>
-                <p class="project-role">Dirección / Producción</p>
+                <h3 class="project-title">Audiovisual Product</h3>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
 
           <!-- Proyecto 2 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-2.webp" alt="Campaña Publicitaria" />
+            <img src="../assets/hero-2.webp" alt="Campaña Publicitaria" />
             <div class="project-overlay">
               <div class="project-meta">
                 <p class="project-client">Antel</p>
-                <h3 class="project-title">Campaña Verano</h3>
-                <p class="project-role">Producción</p>
+                <h3 class="project-title">Summer Campaign</h3>
+                <p class="project-role">Develop</p>
               </div>
             </div>
           </a>
 
           <!-- Proyecto 3 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-3.webp" alt="Fashion Film" />
+            <img src="../assets/hero-3.webp" alt="Fashion Film" />
             <div class="project-overlay">
               <div class="project-meta">
                 <p class="project-client">Fashion Brand</p>
                 <h3 class="project-title">Editorial Fashion</h3>
-                <p class="project-role">Dirección</p>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
 
-          <!-- Proyecto 4 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="music"
-          >
-            <img src="assets/work3bolsa.webp" alt="Music Video" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Artista</p>
-                <h3 class="project-title">Music Video</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 5 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/hero-1.webp" alt="Publicidad TV" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Marca Y</p>
-                <h3 class="project-title">Spot TV</h3>
-                <p class="project-role">Dirección</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 6 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/work1planta.webp" alt="Branded Content" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Startup</p>
-                <h3 class="project-title">Branded Content</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 7 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="brand"
-          >
-            <img src="assets/hero-2.webp" alt="Campaña Digital" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Tech Company</p>
-                <h3 class="project-title">Campaña Digital</h3>
-                <p class="project-role">Dirección</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 8 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/hero-3.webp" alt="Documental corto" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Festival</p>
-                <h3 class="project-title">Short Documentary</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 9 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="brand"
-          >
-            <img src="assets/hero-1.webp" alt="Bagóvit Solar - Film de marca" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Bagóvit Solar</p>
-                <h3 class="project-title">Protección Solar</h3>
-                <p class="project-role">Brand Film</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 10 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/work1planta.webp" alt="Punta Carretas - Campaña" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Punta Carretas</p>
-                <h3 class="project-title">Historias de Ciudad</h3>
-                <p class="project-role">Producción / Post</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 11 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img
-              src="assets/work3bolsa.webp"
-              alt="ANTEL - Campaña institucional"
-            />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">ANTEL</p>
-                <h3 class="project-title">Experiencia 5G</h3>
-                <p class="project-role">Campaña Institucional</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 12 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="music"
-          >
-            <img src="assets/hero-2.webp" alt="Live Session - Music Video" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Live Session</p>
-                <h3 class="project-title">Studio Take</h3>
-                <p class="project-role">Dirección / Cámara</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="projects-grid">
           <!-- Proyecto 1 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
+            <img src="../assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">CPA</p>
-                <h3 class="project-title">Proyecto Audiovisual</h3>
-                <p class="project-role">Dirección / Producción</p>
+                <p class="project-client">Itaú</p>
+                <h3 class="project-title">Audiovisual Product</h3>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
 
           <!-- Proyecto 2 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-2.webp" alt="Campaña Publicitaria" />
+            <img src="../assets/hero-2.webp" alt="Campaña Publicitaria" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">Marca X</p>
-                <h3 class="project-title">Campaña Verano</h3>
-                <p class="project-role">Producción</p>
+                <p class="project-client">Antel</p>
+                <h3 class="project-title">Summer Campaign</h3>
+                <p class="project-role">Develop</p>
               </div>
             </div>
           </a>
 
           <!-- Proyecto 3 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-3.webp" alt="Fashion Film" />
+            <img src="../assets/hero-3.webp" alt="Fashion Film" />
             <div class="project-overlay">
               <div class="project-meta">
                 <p class="project-client">Fashion Brand</p>
                 <h3 class="project-title">Editorial Fashion</h3>
-                <p class="project-role">Dirección</p>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
-
-          <!-- Proyecto 4 -->
+          <!-- Proyecto 1 -->
           <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="music"
-          >
-            <img src="assets/work3bolsa.webp" alt="Music Video" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Artista</p>
-                <h3 class="project-title">Music Video</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 5 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/hero-1.webp" alt="Publicidad TV" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Marca Y</p>
-                <h3 class="project-title">Spot TV</h3>
-                <p class="project-role">Dirección</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 6 -->
-          <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/work1planta.webp" alt="Branded Content" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Startup</p>
-                <h3 class="project-title">Branded Content</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 7 -->
-          <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-2.webp" alt="Campaña Digital" />
+            <img src="../assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">Tech Company</p>
-                <h3 class="project-title">Campaña Digital</h3>
-                <p class="project-role">Dirección</p>
+                <p class="project-client">Itaú</p>
+                <h3 class="project-title">Audiovisual Product</h3>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
 
-          <!-- Proyecto 8 -->
+          <!-- Proyecto 2 -->
           <a
-            href="pages/project-01.html"
-            class="project-card"
-            data-category="services"
-          >
-            <img src="assets/hero-3.webp" alt="Documental corto" />
-            <div class="project-overlay">
-              <div class="project-meta">
-                <p class="project-client">Festival</p>
-                <h3 class="project-title">Short Documentary</h3>
-                <p class="project-role">Producción</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Proyecto 9 -->
-          <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
             data-category="brand"
           >
-            <img src="assets/hero-1.webp" alt="Bagóvit Solar - Film de marca" />
+            <img src="../assets/hero-2.webp" alt="Campaña Publicitaria" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">Bagóvit Solar</p>
-                <h3 class="project-title">Protección Solar</h3>
-                <p class="project-role">Brand Film</p>
+                <p class="project-client">Antel</p>
+                <h3 class="project-title">Summer Campaign</h3>
+                <p class="project-role">Develop</p>
               </div>
             </div>
           </a>
 
-          <!-- Proyecto 10 -->
+          <!-- Proyecto 3 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
-            data-category="services"
+            data-category="brand"
           >
-            <img src="assets/work1planta.webp" alt="Punta Carretas - Campaña" />
+            <img src="../assets/hero-3.webp" alt="Fashion Film" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">Punta Carretas</p>
-                <h3 class="project-title">Historias de Ciudad</h3>
-                <p class="project-role">Producción / Post</p>
+                <p class="project-client">Fashion Brand</p>
+                <h3 class="project-title">Editorial Fashion</h3>
+                <p class="project-role">Directed</p>
+              </div>
+            </div>
+          </a>
+          <!-- Proyecto 1 -->
+          <a
+            href="project-01en.html"
+            class="project-card"
+            data-category="brand"
+          >
+            <img src="../assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Itaú</p>
+                <h3 class="project-title">Audiovisual Product</h3>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
 
-          <!-- Proyecto 11 -->
+          <!-- Proyecto 2 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
-            data-category="services"
+            data-category="brand"
           >
-            <img
-              src="assets/work3bolsa.webp"
-              alt="ANTEL - Campaña institucional"
-            />
+            <img src="../assets/hero-2.webp" alt="Campaña Publicitaria" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">ANTEL</p>
-                <h3 class="project-title">Experiencia 5G</h3>
-                <p class="project-role">Campaña Institucional</p>
+                <p class="project-client">Antel</p>
+                <h3 class="project-title">Summer Campaign</h3>
+                <p class="project-role">Develop</p>
               </div>
             </div>
           </a>
 
-          <!-- Proyecto 12 -->
+          <!-- Proyecto 3 -->
           <a
-            href="pages/project-01.html"
+            href="project-01en.html"
             class="project-card"
-            data-category="music"
+            data-category="brand"
           >
-            <img src="assets/hero-2.webp" alt="Live Session - Music Video" />
+            <img src="../assets/hero-3.webp" alt="Fashion Film" />
             <div class="project-overlay">
               <div class="project-meta">
-                <p class="project-client">Live Session</p>
-                <h3 class="project-title">Studio Take</h3>
-                <p class="project-role">Dirección / Cámara</p>
+                <p class="project-client">Fashion Brand</p>
+                <h3 class="project-title">Editorial Fashion</h3>
+                <p class="project-role">Directed</p>
               </div>
             </div>
           </a>
@@ -647,30 +442,30 @@
       <div class="container container-wide footer-grid">
         <!-- Marca -->
         <div class="footer-col footer-brand">
-          <a href="#top" class="footer-logo" aria-label="WACH - Ir al inicio">
-            <img src="assets/navbar.webp" alt="WACH" />
+          <a href="#top" class="footer-logo" aria-label="WACH - Go to top">
+            <img src="../assets/navbar.webp" alt="WACH" />
           </a>
 
           <span class="footer-text">
-            Productora audiovisual para marcas. Estrategia, producción y post
-            para proyectos de alto impacto.
+            Audiovisual production company for brands. Strategy, production and
+            post-production for high-impact projects.
           </span>
         </div>
 
         <!-- Navegación -->
         <div class="footer-col">
-          <p class="footer-kicker">Explorar</p>
+          <p class="footer-kicker">Explore</p>
           <ul class="footer-links">
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="pages/nosotros.html">Nosotros</a></li>
-            <li><a href="#top">Volver arriba</a></li>
+            <li><a href="indexen.html">Projects</a></li>
+            <li><a href="#servicios">Services</a></li>
+            <li><a href="nosotrosen.html">About</a></li>
+            <li><a href="#top">Back to top</a></li>
           </ul>
         </div>
 
         <!-- Contacto -->
         <div class="footer-col">
-          <p class="footer-kicker">Contacto</p>
+          <p class="footer-kicker">Contact</p>
           <a href="mailto:hola@somoswach.com" class="contact-item">
             <!-- email -->
             <svg viewBox="0 0 24 24" class="contact-icon">
@@ -709,7 +504,7 @@
       <div class="footer-separator"></div>
 
       <div class="container container-wide footer-bottom">
-        <span class="footer-copy">© <span id="year"></span> WACH</span>
+        <span class="footer-copy">©️ <span id="year"></span> WACH</span>
       </div>
     </footer>
     <script>
@@ -819,11 +614,11 @@
       })();
     </script>
 
-    <script src="js/hero.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/languajebutton.js"></script>
-    <script src="js/footer.js"></script>
+    <script src="../js/hero.js"></script>
+    <script src="../js/filters.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/languajebutton.js"></script>
+    <script src="../js/footer.js"></script>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();

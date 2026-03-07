@@ -1,0 +1,599 @@
+/* =====================================================
+   NOSOTROS PAGE
+===================================================== */
+
+.about-page {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* =========================
+   ABOUT HERO
+========================= */
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* columna de texto */
+.about-hero-copy {
+  max-width: 640px;
+}
+
+/* título grande */
+.about-title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 0.95;
+}
+
+/* texto descriptivo */
+.about-lead {
+  max-width: 60ch;
+  line-height: 1.65;
+  font-size: 1rem;
+}
+
+/* =========================
+   IMAGEN
+========================= */
+
+.about-hero-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.about-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero-media {
+    margin-top: 1rem;
+    aspect-ratio: 16/9;
+  }
+
+  .about-title {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+}
+/* =========================
+   STORY
+========================= */
+
+.about-story {
+}
+
+.about-story-grid {
+  align-items: start;
+}
+
+.about-copy {
+  max-width: 60ch;
+}
+
+.about-copy p {
+  line-height: 1.7;
+}
+
+/* =========================
+   VALUES
+========================= */
+
+.about-values h2 {
+  margin-bottom: 4rem;
+}
+.values-grid {
+  margin-top: var(--space-lg);
+}
+
+.value-card {
+  height: 100%;
+}
+
+.value-card h3 {
+  font-size: 1.05rem;
+}
+
+.value-card p {
+  line-height: 1.65;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.about-stats {
+  border-top: 1px solid var(--color-border);
+}
+
+.stats-grid {
+  margin-top: var(--space-md);
+}
+
+.stat-item {
+  padding: 1.25rem;
+
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.stat-label {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* =========================
+   CIERRE
+========================= */
+
+.about-closing {
+  border-top: 1px solid var(--color-border);
+}
+
+.about-closing p {
+  line-height: 1.7;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .about-hero {
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .about-title {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 14vw, 4.4rem);
+  }
+
+  .about-lead {
+    max-width: 100%;
+    font-size: 0.98rem;
+  }
+
+  .about-hero-media {
+    max-width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .values-grid,
+  .stats-grid {
+    margin-top: var(--space-md);
+  }
+}
+
+/* =========================
+   TEAM GALLERY
+========================= */
+
+.about-team {
+  border-top: 1px solid var(--color-border);
+}
+
+.team-gallery {
+  margin-top: var(--space-lg);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.team-gallery img {
+  width: 100%;
+  height: 320px;
+
+  object-fit: cover;
+
+  transition: transform var(--transition-base);
+}
+
+.team-gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .team-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-gallery img {
+    height: 220px;
+  }
+}
+
+.about-story {
+  position: relative;
+
+  background-image: url("../../assets/backgroundd.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* overlay */
+
+.about-story::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 0;
+}
+
+/* contenido arriba del overlay */
+
+.about-story .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about-values {
+  position: relative;
+
+  background-image: url("../../assets/backgroundd.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* overlay */
+
+.about-values::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 0;
+}
+
+/* contenido arriba del overlay */
+
+.about-values .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   VIDEO FULL BLEED
+========================= */
+
+.project-video--bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* contenedor fullscreen real */
+.project-video-inner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* viewport moderno */
+@supports (height: 100dvh) {
+  .project-video-inner {
+    min-height: 100dvh;
+  }
+}
+
+/* =========================
+   IFRAME FULL COVER
+========================= */
+
+.project-video-inner iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100vw;
+  height: 56.25vw; /* 16:9 */
+
+  min-height: 100%;
+  min-width: 177.77vh;
+
+  transform: translate(-50%, -50%);
+  border: 0;
+  display: block;
+}
+
+/* =========================
+   UI LAYER
+========================= */
+
+.player-ui {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.project-video-inner:hover .player-ui,
+.project-video-inner.ui-active .player-ui {
+  opacity: 1;
+}
+
+/* =========================
+   CONTROLES
+========================= */
+
+.player-controls {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(14px, 2vw, 22px);
+  transform: translateX(-50%);
+
+  width: min(920px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-radius: 14px;
+
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  pointer-events: auto;
+}
+
+.player-left,
+.player-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* =========================
+   BOTONES
+========================= */
+
+.player-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    opacity 180ms ease;
+}
+
+.player-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.player-btn:active {
+  transform: translateY(0);
+}
+
+.player-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* =========================
+   PROGRESO
+========================= */
+
+.player-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 160px;
+  padding-inline: 6px;
+}
+
+.player-range {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+/* barra rellena */
+.player-range span[data-progress] {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--color-primary);
+}
+
+/* hacer clickable la barra */
+.player-range {
+  cursor: pointer;
+}
+
+.player-time {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.72);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .player-controls {
+    width: calc(100% - 20px);
+    bottom: 12px;
+    padding: 9px 10px;
+    border-radius: 12px;
+  }
+
+  .player-time {
+    display: none;
+  }
+
+  .player-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .player-bigplay {
+    width: 66px;
+    height: 66px;
+  }
+}
+.section {
+  padding-block: 0;
+}
+
+/* Fade más lento */
+.player-ui {
+  transition: opacity 600ms ease;
+}
+
+/* Cuando está reproduciendo, escondemos la UI (pero puede volver con hover / ui-active si querés) */
+.project-video-inner.is-playing .player-ui {
+  opacity: 0;
+}
+
+/* =========================
+   HIT AREA (click en todo el video)
+========================= */
+.player-hitarea {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* =========================
+   UI comportamiento tipo reproductor
+========================= */
+
+.player-ui {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+/* SOLO JS decide cuándo se muestra */
+.project-video-inner.ui-active .player-ui {
+  opacity: 1;
+}
+
+/* si está reproduciendo, por defecto oculta */
+.project-video-inner.is-playing .player-ui {
+  opacity: 0;
+}
+
+/* si JS activa ui-active mientras reproduce, vuelve a aparecer */
+.project-video-inner.is-playing.ui-active .player-ui {
+  opacity: 1;
+}
+
+/* =========================
+   ICONS / BUTTONS
+========================= */
+
+.player-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+}
+
+.player-btn {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.player-btn:hover {
+  color: white;
+}
+
+/* =========================
+   VOLUME
+========================= */
+
+.player-volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-volume-range {
+  width: 80px;
+  height: 4px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.player-volume-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+.player-volume-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
+
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+#videonosotros {
+  padding-top: 0;
+}
