@@ -121,7 +121,7 @@
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 6rem;
+  gap: 2.5rem;
 }
 
 /* Toggle */
@@ -283,33 +283,74 @@
 /* =========================
    LANGUAGE SWITCH
 ========================= */
-.lang-switch {
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-current {
   display: inline-flex;
   align-items: center;
+  gap: 0.45rem;
+
+  padding: 0.35rem 0.65rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.lang-flag {
+  width: 18px;
+  height: auto;
+  display: block;
+  object-fit: cover;
+
+  display: block;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+
+  min-width: 120px;
+  padding: 0.35rem;
+
+  border-radius: 0.75rem;
+  background: rgba(20, 20, 20, 0.52);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: 0.2s ease;
+}
+
+.lang-dropdown.open .lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.3rem;
 
-  padding: 0.35rem 0.6rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
 
-  background: none;
-
-  font-size: 1.3rem;
-  letter-spacing: 0.06em;
-
-  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
 }
 
-.lang {
-  opacity: 0.45;
-  transition: opacity 0.2s ease;
-}
-
-.lang.active {
-  opacity: 1;
-  font-weight: 600;
-}
-
-.lang-divider {
-  opacity: 0.35;
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* =====================================

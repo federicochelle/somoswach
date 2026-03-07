@@ -1,5 +1,5 @@
 /* =====================================================
-   HERO — Single Video + Progress (clean)
+   HERO — Single Video + Progress (fullscreen real)
 ===================================================== */
 
 .hero {
@@ -11,18 +11,13 @@
   justify-content: center;
 
   width: 100%;
-  min-height: clamp(520px, 92vh, 860px);
+  min-height: 100vh;
 }
 
-/* Safe viewport (iOS) */
-@supports (height: 100svh) {
-  .hero {
-    min-height: min(100svh, 860px);
-  }
-}
+/* viewport moderno */
 @supports (height: 100dvh) {
   .hero {
-    min-height: min(100dvh, 860px);
+    min-height: 100dvh;
   }
 }
 
@@ -162,8 +157,13 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 100svh;
-    height: 100svh;
+    min-height: 100vh;
+  }
+
+  @supports (height: 100dvh) {
+    .hero {
+      min-height: 100dvh;
+    }
   }
 
   .hero-content {
@@ -174,7 +174,7 @@
 
   #hero-text {
     max-width: 520px;
-    margin-left: 0; /* en mobile lo dejamos más pegado */
+    margin-left: 0;
   }
 
   .hero-title {

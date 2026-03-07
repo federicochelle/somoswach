@@ -45,7 +45,9 @@
     </div>
     <!-- Header -->
     <header class="site-header">
-      <div class="container container-wide flex-between flex-wrap header-inner">
+      <div
+        class="container container-header flex-between flex-wrap header-inner"
+      >
         <!-- Brand -->
         <a class="brand-logo-only" href="#top" aria-label="Ir al inicio">
           <img
@@ -66,11 +68,25 @@
           <a class="nav-link" href="#contacto">CONTACTO</a>
 
           <!-- Language switch -->
-          <button class="lang-switch" id="lang-switch" data-lang="es">
-            <span class="lang lang-es active">ES</span>
-            <span class="lang-divider">/</span>
-            <span class="lang lang-en">EN</span>
-          </button>
+
+          <div class="lang-dropdown nav-link">
+            <button
+              class="lang-current"
+              id="lang-current"
+              type="button"
+              aria-expanded="false"
+            >
+              <span class="lang-current-text">ES</span>
+              <img class="lang-flag" src="assets/espain.webp" alt="Español" />
+            </button>
+
+            <div class="lang-menu" id="lang-menu">
+              <a href="/en/" class="lang-option">
+                <span>EN</span>
+                <img class="lang-flag" src="assets/usa.webp" alt="English" />
+              </a>
+            </div>
+          </div>
           <!-- CTA -->
         </nav>
 
@@ -627,10 +643,10 @@
             <img src="assets/navbar.webp" alt="WACH" />
           </a>
 
-          <p class="footer-text">
+          <span class="footer-text">
             Productora audiovisual para marcas. Estrategia, producción y post
             para proyectos de alto impacto.
-          </p>
+          </span>
         </div>
 
         <!-- Navegación -->
@@ -685,7 +701,7 @@
       <div class="footer-separator"></div>
 
       <div class="container container-wide footer-bottom">
-        <p class="footer-copy">© <span id="year"></span> WACH</p>
+        <span class="footer-copy">© <span id="year"></span> WACH</span>
       </div>
     </footer>
     <script>

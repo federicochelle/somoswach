@@ -63,6 +63,7 @@
 
 #projects-text {
   max-width: 980px;
+  text-align: center;
 }
 
 /* label */
@@ -392,7 +393,7 @@
 .projects-hero .hero-overlay {
   height: calc(100% + 300px);
 
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.9);
 
   z-index: 0;
 }

@@ -1,7 +1,5 @@
 /* =========================
    VIDEO FULL BLEED
-   - Full viewport en desktop
-   - Altura segura en mobile (svh)
 ========================= */
 
 .project-video--bleed {
@@ -10,30 +8,24 @@
   margin-right: calc(50% - 50vw);
 }
 
-/* reemplaza aspect-ratio por altura real */
+/* contenedor fullscreen real */
 .project-video-inner {
   position: relative;
   width: 100%;
-  height: 100vh; /* desktop full */
+  min-height: 100vh;
   overflow: hidden;
 }
 
-/* mobile: evita bugs de barra del navegador */
-@media (max-width: 768px) {
+/* viewport moderno */
+@supports (height: 100dvh) {
   .project-video-inner {
-    height: 100svh; /* ajustá 60–80svh a gusto */
+    min-height: 100dvh;
   }
 }
 
-/* iframe full size */
-.project-video-inner iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
+/* =========================
+   IFRAME FULL COVER
+========================= */
 
 .project-video-inner iframe {
   position: absolute;
@@ -48,7 +40,9 @@
 
   transform: translate(-50%, -50%);
   border: 0;
+  display: block;
 }
+
 /* =========================
    UI LAYER
 ========================= */
@@ -63,33 +57,13 @@
   transition: opacity 220ms ease;
 }
 
-/* mostrar UI al hover o cuando esté "activa" */
-.project-video-inner:hover .player-ui,
-.project-video-inner.ui-active .player-ui {
-  opacity: 1;
-}
-/* =========================
-   UI LAYER
-========================= */
-
-.player-ui {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-/* mostrar UI al hover o cuando esté "activa" */
 .project-video-inner:hover .player-ui,
 .project-video-inner.ui-active .player-ui {
   opacity: 1;
 }
 
 /* =========================
-   CONTROLES (barra abajo)
+   CONTROLES
 ========================= */
 
 .player-controls {
@@ -120,7 +94,6 @@
   align-items: center;
   gap: 10px;
 }
-
 /* =========================
    BOTONES
 ========================= */
@@ -493,7 +466,7 @@
   position: relative;
   overflow: visible;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.9)),
     url("../../assets/backgroundd.webp") left/cover no-repeat !important;
   height: calc(100% + 300px) !important;
 }

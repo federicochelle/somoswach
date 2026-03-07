@@ -11,7 +11,7 @@
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  padding-inline: clamp(1rem, 4vw, 2rem);
+  padding-inline: clamp(1.5rem, 4vw, 2rem);
 }
 
 /* Variantes opcionales */
@@ -23,6 +23,12 @@
   max-width: 1400px;
 }
 
+.container-header {
+  width: 100%;
+  max-width: 1800px; /* mucho más amplio que 1400 */
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 4vw, 3rem); /* respiración lateral */
+}
 /* =========================
    SECCIONES
 ========================= */
