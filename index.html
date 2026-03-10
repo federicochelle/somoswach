@@ -644,7 +644,7 @@
     </main>
     <!-- FOOTER -->
     <footer class="footer" id="footer">
-      <div class="container container-wide footer-grid">
+      <div class="container container-header footer-grid">
         <!-- Marca -->
         <div class="footer-col footer-brand">
           <a href="#top" class="footer-logo" aria-label="WACH - Ir al inicio">
@@ -664,7 +664,6 @@
             <li><a href="#proyectos">Proyectos</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="pages/nosotros.html">Nosotros</a></li>
-            <li><a href="#top">Volver arriba</a></li>
           </ul>
         </div>
 
@@ -715,9 +714,8 @@
     <script>
       (function () {
         const loader = document.getElementById("page-loader");
-        const root = document.documentElement; // <html>
+        const root = document.documentElement;
 
-        // Si no hay loader, igual aseguramos estado listo
         if (!loader) {
           root.classList.remove("is-loading");
           root.classList.add("is-ready");
@@ -728,39 +726,32 @@
           window.matchMedia &&
           window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // ✅ 1) No volver a mostrar el loader si ya se vio en esta sesión
-        // (cuando volvés al index desde otra página)
-        const KEY = "wach_loader_seen_v1";
-
-        // ✅ 2) Manejo BFCache (volver atrás/adelante). Evita que se re-anime.
-        window.addEventListener("pageshow", (e) => {
-          if (e.persisted) {
-            try {
-              sessionStorage.setItem(KEY, "1");
-            } catch {}
-            root.classList.remove("is-loading");
-            root.classList.add("is-ready");
-            loader.remove();
-          }
-        });
-
-        // Si ya lo vio: no animar, mostrar sitio directo
-        let seen = false;
-        try {
-          seen = sessionStorage.getItem(KEY) === "1";
-        } catch {}
-
-        if (reduceMotion || seen) {
+        function showSiteImmediately() {
           root.classList.remove("is-loading");
           root.classList.add("is-ready");
           try {
             loader.remove();
           } catch {}
+        }
+
+        // Detectar tipo de navegación
+        const navEntries = performance.getEntriesByType("navigation");
+        const navType = navEntries.length ? navEntries[0].type : "navigate";
+
+        // Si vuelve atrás/adelante, NO mostrar loader
+        if (reduceMotion || navType === "back_forward") {
+          showSiteImmediately();
           return;
         }
 
-        // A partir de acá: primera visita de la sesión → animamos loader
-        const MIN_TIME = 2400; // 1200–1800 recomendado
+        // Seguridad extra para BFCache
+        window.addEventListener("pageshow", (e) => {
+          if (e.persisted) {
+            showSiteImmediately();
+          }
+        });
+
+        const MIN_TIME = 2400;
         const MAX_TIME = 3800;
         const start = performance.now();
         let hidden = false;
@@ -774,15 +765,9 @@
           if (hidden) return;
           hidden = true;
 
-          // Marcamos que ya se vio en esta sesión
-          try {
-            sessionStorage.setItem(KEY, "1");
-          } catch {}
-
-          // Primero entra el sitio, luego se desvanece el loader
           showSite();
-
           loader.classList.add("hide");
+
           setTimeout(() => {
             try {
               loader.remove();
@@ -796,7 +781,6 @@
           setTimeout(hideLoader, wait);
         }
 
-        // Esperar al poster del hero si existe (mejor percepción)
         window.addEventListener("DOMContentLoaded", () => {
           const hero = document.querySelector(
             ".hero-slide.is-active, [data-hero-video]",
@@ -814,7 +798,6 @@
           img.src = poster;
         });
 
-        // Fallback duro
         setTimeout(hideLoader, MAX_TIME);
       })();
     </script>

@@ -76,9 +76,6 @@
 
 /* CLIENTE */
 .project-client {
-  margin: 0 0 clamp(6px, 0.8vw, 10px);
-
-  font-size: 1.2rem;
   letter-spacing: clamp(0.1em, 0.25vw, 0.14em);
   text-transform: uppercase;
   opacity: 0.75;
@@ -86,8 +83,6 @@
 
 /* TÍTULO */
 .project-title {
-  margin: 0 0 clamp(6px, 0.9vw, 12px);
-
   font-size: 2rem;
   font-weight: 700;
 
@@ -96,8 +91,6 @@
 
 /* ROL / DESCRIPCIÓN */
 .project-role {
-  margin: 0;
-
   font-size: 1.2rem;
   opacity: 0.85;
   line-height: clamp(1.25, 1.2vw, 1.45);
