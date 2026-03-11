@@ -36,7 +36,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (titleEl) titleEl.textContent = project.title;
   if (clientEl) clientEl.textContent = project.client;
   if (descriptionEl) descriptionEl.textContent = project.description;
-  if (vimeoEl) vimeoEl.src = project.vimeo;
+  if (vimeoEl) {
+    vimeoEl.src = project.vimeo;
+
+    setTimeout(() => {
+      if (typeof initProjectVimeoPlayer === "function") {
+        initProjectVimeoPlayer();
+      }
+    }, 300);
+  }
   if (yearEl) yearEl.textContent = project.year;
   if (durationEl) durationEl.textContent = project.duration;
   if (formatEl) formatEl.textContent = project.format;

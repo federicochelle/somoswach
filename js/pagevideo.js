@@ -1,12 +1,15 @@
 // Requiere:
 // <script src="https://player.vimeo.com/api/player.js"></script>
 
-(() => {
-  const iframe = document.getElementById("vimeo-player");
+function initProjectVimeoPlayer() {
+  const iframe = document.getElementById("project-vimeo");
   if (!iframe || !window.Vimeo) return;
 
   const wrap = iframe.closest(".project-video-inner");
   if (!wrap) return;
+
+  if (wrap.dataset.playerReady === "true") return;
+  wrap.dataset.playerReady = "true";
 
   const hitarea = wrap.querySelector(".player-hitarea");
   const btnPlay = wrap.querySelector("[data-play]");
@@ -259,4 +262,4 @@
       elTime.textContent = `${format(data.seconds)} / ${format(duration)}`;
     }
   });
-})();
+}
