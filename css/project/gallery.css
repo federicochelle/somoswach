@@ -14,7 +14,6 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   width: 100%;
   margin-inline: auto;
 }
@@ -25,20 +24,19 @@
 
 .project-card {
   position: relative;
-  display: block; /* si es <a> */
+  display: block;
   overflow: hidden;
-
   aspect-ratio: 16 / 9;
   cursor: pointer;
 }
 
 /* imagen */
+
 .project-card img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-
   transition: transform 0.6s ease;
 }
 
@@ -67,29 +65,25 @@
 }
 
 /* =====================================
-   META — proporcional (desktop grande / mobile respirado)
+   META
 ===================================== */
 
 .project-meta {
   color: #fff;
 }
 
-/* CLIENTE */
 .project-client {
   letter-spacing: clamp(0.1em, 0.25vw, 0.14em);
   text-transform: uppercase;
   opacity: 0.75;
 }
 
-/* TÍTULO */
 .project-title {
   font-size: 2rem;
   font-weight: 700;
-
   letter-spacing: 0.01em;
 }
 
-/* ROL / DESCRIPCIÓN */
 .project-role {
   font-size: 1.2rem;
   opacity: 0.85;
@@ -97,30 +91,6 @@
 }
 
 /* =====================================
-   MOBILE: respira + no se “encima”
-===================================== */
-
-@media (max-width: 700px) {
-  .project-client {
-    font-size: 1.1rem;
-  }
-
-  .project-title {
-    font-size: clamp(1.4rem, 6vw, 1.9rem);
-    line-height: 1.18;
-  }
-
-  .project-role {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-
-  /* opcional pero MUY recomendado para que respire en mobile:
-     (si querés, pegalo; no cambia “estilo”, solo espacio) */
-  .project-overlay {
-    padding: 1.1rem;
-  }
-} /* =====================================
    HOVER
 ===================================== */
 
@@ -141,63 +111,25 @@
     grid-template-columns: 1fr;
   }
 
-  /* en mobile no hay hover -> overlay visible siempre */
   .project-overlay {
     opacity: 1;
+    padding: 1.1rem;
   }
 
   .project-card:hover img {
     transform: none;
   }
 
-  /* tamaño de título más controlado en mobile */
   .project-title {
     font-size: clamp(1.4rem, 6vw, 2rem);
   }
-}
 
-/* =====================================
-   PROJECT REVEAL ANIMATION
-===================================== */
+  .project-client {
+    font-size: 1.1rem;
+  }
 
-.project-card {
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 700ms ease,
-    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.project-card.is-hidden {
-  display: none;
-}
-
-/* cuando aparece */
-.project-card.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Filtro: fade suave */
-.project-card {
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
-}
-
-.project-card.is-filtered-out {
-  opacity: 0;
-  transform: translateY(6px);
-  pointer-events: none;
-}
-
-/* al terminar la transición, no queremos que ocupe espacio:
-   hacemos que "colapse" con display:none usando JS? NO.
-   Alternativa simple: usamos height/scale? (complica).
-   Solución práctica: ocultar con display:none después de la transición (opcional).
-*/
-
-/* Botones */
-.filter-btn.is-active {
-  opacity: 1;
+  .project-role {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
 }

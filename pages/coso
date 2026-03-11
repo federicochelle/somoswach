@@ -1,0 +1,129 @@
+<!-- Proyecto 1 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="brand"
+          >
+            <img src="../assets/hero-1.webp" alt="CPA - Proyecto Audiovisual" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Itaú</p>
+                <h3 class="project-title">Proyecto Audiovisual</h3>
+                <p class="project-role">Dirección / Producción</p>
+              </div>
+            </div>  
+          </a>
+
+          <!-- Proyecto 2 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="brand"
+          >
+            <img src="../assets/hero-2.webp" alt="Campaña Publicitaria" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Antel</p>
+                <h3 class="project-title">Campaña Verano</h3>
+                <p class="project-role">Producción</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 3 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="brand"
+          >
+            <img src="../assets/hero-3.webp" alt="Fashion Film" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Fashion Brand</p>
+                <h3 class="project-title">Editorial Fashion</h3>
+                <p class="project-role">Dirección</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 4 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="music"
+          >
+            <img src="../assets/work3bolsa.webp" alt="Music Video" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Artista</p>
+                <h3 class="project-title">Music Video</h3>
+                <p class="project-role">Producción</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 5 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="services"
+          >
+            <img src="../assets/hero-1.webp" alt="Publicidad TV" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Marca Y</p>
+                <h3 class="project-title">Spot TV</h3>
+                <p class="project-role">Dirección</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 6 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="services"
+          >
+            <img src="../assets/work1planta.webp" alt="Branded Content" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Startup</p>
+                <h3 class="project-title">Branded Content</h3>
+                <p class="project-role">Producción</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 7 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="brand"
+          >
+            <img src="../assets/hero-2.webp" alt="Campaña Digital" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Tech Company</p>
+                <h3 class="project-title">Campaña Digital</h3>
+                <p class="project-role">Dirección</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Proyecto 8 -->
+          <a
+            href="pages/project-01.html"
+            class="project-card"
+            data-category="services"
+          >
+            <img src="../assets/hero-3.webp" alt="Documental corto" />
+            <div class="project-overlay">
+              <div class="project-meta">
+                <p class="project-client">Festival</p>
+                <h3 class="project-title">Short Documentary</h3>
+                <p class="project-role">Producción</p>
+              </div>
+            </div>
+          </a>
+
+          

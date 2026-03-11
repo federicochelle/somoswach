@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="admin-login">
+      <form id="admin-login-form">
+        <input id="admin-email" type="email" placeholder="Email" required />
+        <input
+          id="admin-password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+
+    <div id="admin-panel" hidden>
+      <button id="admin-logout" type="button">Salir</button>
+
+      <div class="admin-layout">
+        <aside>
+          <div id="admin-projects-list"></div>
+        </aside>
+        <div class="admin-sidebar">
+          <h3>Projects</h3>
+          <div id="admin-projects-list"></div>
+        </div>
+        <main>
+          <form id="admin-project-form">
+            <input id="f-client" placeholder="Cliente" />
+            <input id="f-title" placeholder="Título" />
+            <input id="f-role" placeholder="Rol" />
+            <select id="f-category">
+              <option value="brand">Brand</option>
+              <option value="music">Music</option>
+              <option value="services">Services</option>
+            </select>
+            <textarea id="f-description" placeholder="Descripción"></textarea>
+            <input id="f-vimeo" placeholder="URL embed Vimeo" />
+            <input id="f-year" placeholder="Año" />
+            <input id="f-duration" placeholder="Duración" />
+            <input id="f-format" placeholder="Formato" />
+            <input id="f-platforms" placeholder="Plataformas" />
+            <label>
+              <input id="f-published" type="checkbox" />
+              Publicado
+            </label>
+
+            <input id="f-image" placeholder="URL imagen" />
+            <input id="f-image-file" type="file" accept="image/*" />
+
+            <button type="submit">Guardar</button>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase.js"></script>
+
+    <script src="auth.js"></script>
+    <script src="projects.js"></script>
+    <script src="upload.js"></script>
+  </body>
+</html>

@@ -111,7 +111,8 @@
 .projects-hero .projects-title,
 .projects-hero .projects-filters,
 .projects-hero .projects-filters .filter-btn {
-  opacity: 0;
+  opacity: 1;
+  transform: none;
 }
 
 /* label */
