@@ -67,13 +67,8 @@ if (langSwitch) {
   const path = window.location.pathname;
 
   const isEnglish = path.includes("/en/");
-  const isProjectPage = path.includes("project.html");
 
-  if (isProjectPage) {
-    langSwitch.href = isEnglish
-      ? "pages/project.html" + params
-      : "en/project.html" + params;
-  } else {
-    langSwitch.href = isEnglish ? "/index.html" : "/en/index.html";
-  }
+  langSwitch.href = isEnglish
+    ? "../pages/project.html" + params
+    : "../en/project.html" + params;
 }
