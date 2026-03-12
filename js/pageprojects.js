@@ -74,8 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     related = related.slice(0, 6);
 
-    const relatedPage =
-      lang === "en" ? "en/project.html" : "pages/project.html";
+    const relatedPage = "project.html";
 
     relatedGrid.innerHTML = related
       .map((p) => {
