@@ -59,3 +59,21 @@ if (header && toggle && mobileMenu && overlay) {
     if (window.innerWidth > 900 && isOpen()) closeMenu();
   });
 }
+
+const langSwitch = document.querySelector("#lang-switch");
+
+if (langSwitch) {
+  const params = window.location.search;
+  const path = window.location.pathname;
+
+  const isEnglish = path.includes("/en/");
+  const isProjectPage = path.includes("project.html");
+
+  if (isProjectPage) {
+    langSwitch.href = isEnglish
+      ? "/pages/project.html" + params
+      : "/en/project.html" + params;
+  } else {
+    langSwitch.href = isEnglish ? "/index.html" : "/en/index.html";
+  }
+}

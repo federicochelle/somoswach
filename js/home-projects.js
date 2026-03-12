@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const grid = document.querySelector("#projects-grid");
   if (!grid) return;
 
+  const lang = window.location.pathname.includes("/en/") ? "en" : "es";
+  const projectPage =
+    lang === "en" ? "/en/project.html" : "/pages/project.html";
+
   const { data: projects, error } = await window.supabaseClient
     .from("projects")
     .select("*")
@@ -15,26 +19,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log("PROJECTS:", projects);
 
   grid.innerHTML = projects
-    .map(
-      (project) => `
-<a class="project-card"
-data-category="${project.category}"
-href="pages/project.html?slug=${project.slug}">
+    .map((project) => {
+      const title = project[`title_${lang}`] || project.title_es || "";
+      const client = project.client || "";
+      const role = project[`role_${lang}`] || project.role_es || "";
 
-<img src="${project.image}" alt="${project.title}">
+      return `
+        <a class="project-card"
+          data-category="${project.category}"
+          href="${projectPage}?slug=${project.slug}">
 
-<div class="project-overlay">
-<div class="project-meta">
+          <img src="${project.image}" alt="${title}">
 
-<p class="project-client">${project.client}</p>
-<h3 class="project-title">${project.title}</h3>
-<p class="project-role">${project.role}</p>
+          <div class="project-overlay">
+            <div class="project-meta">
+              <p class="project-client">${client}</p>
+              <h3 class="project-title">${title}</h3>
+              <p class="project-role">${role}</p>
+            </div>
+          </div>
 
-</div>
-</div>
-
-</a>
-`,
-    )
+        </a>
+      `;
+    })
     .join("");
 });
