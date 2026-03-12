@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!grid) return;
 
   const lang = window.location.pathname.includes("/en/") ? "en" : "es";
-  const projectPage =
-    lang === "en" ? "/en/project.html" : "/pages/project.html";
+  const projectPage = lang === "en" ? "en/project.html" : "pages/project.html";
 
   const { data: projects, error } = await window.supabaseClient
     .from("projects")

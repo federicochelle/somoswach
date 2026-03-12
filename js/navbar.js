@@ -71,8 +71,8 @@ if (langSwitch) {
 
   if (isProjectPage) {
     langSwitch.href = isEnglish
-      ? "/pages/project.html" + params
-      : "/en/project.html" + params;
+      ? "pages/project.html" + params
+      : "en/project.html" + params;
   } else {
     langSwitch.href = isEnglish ? "/index.html" : "/en/index.html";
   }
