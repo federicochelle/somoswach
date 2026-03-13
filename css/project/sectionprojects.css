@@ -380,8 +380,8 @@
   top: 0;
   left: 0;
   right: 0;
-
-  height: calc(100% + 300px); /* cuánto invade la sección siguiente */
+  height: 100%;
+  /* height: calc(100% + 300px);  cuánto invade la sección siguiente */
 
   background-image: url("../../assets/backgroundd.webp");
   background-size: cover;
@@ -392,7 +392,7 @@
 
 /* overlay oscuro */
 .projects-hero .hero-overlay {
-  height: calc(100% + 300px);
+  height: 100%;
 
   background: rgba(0, 0, 0, 0.9);
 
