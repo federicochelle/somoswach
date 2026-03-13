@@ -60,9 +60,9 @@ if (header && toggle && mobileMenu && overlay) {
   });
 }
 
-const langSwitch = document.querySelector("#lang-switch");
+const langSwitches = document.querySelectorAll("#lang-switch");
 
-if (langSwitch) {
+langSwitches.forEach((langSwitch) => {
   const params = window.location.search;
   const path = window.location.pathname;
 
@@ -71,4 +71,4 @@ if (langSwitch) {
   langSwitch.href = isEnglish
     ? "../pages/project.html" + params
     : "../en/project.html" + params;
-}
+});
