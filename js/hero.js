@@ -90,6 +90,8 @@
 
   // Inicial
   // Importante: iOS a veces necesita "muted + playsinline" (ya lo tenés)
+  setTimeout(() => {
   safePlay();
   start();
+}, 1500);
 })();
