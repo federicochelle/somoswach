@@ -27,22 +27,33 @@
   </head>
 
   <body>
-    <!-- LOADER -->
     <div class="page-loader" id="page-loader" aria-hidden="true">
-      <div class="loader-inner">
-        <div class="loader-logo" aria-label="WACH">
-          <!-- Usá tu logo sin fondo (SVG o PNG/WebP) -->
-          <img
-            src="assets/navbar.webp"
-            alt="WACH"
-            width="220"
-            height="90"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </div>
-      </div>
+
+  <!-- VIDEO DE FONDO -->
+  <video
+    class="loader-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="assets/loader.webm" type="video/webm" />
+  </video>
+
+  <div class="loader-inner">
+    <div class="loader-logo" aria-label="WACH">
+      <img
+        src="assets/navbar.webp"
+        alt="WACH"
+        width="220"
+        height="90"
+        decoding="async"
+        fetchpriority="high"
+      />
     </div>
+  </div>
+
+</div>
     <!-- Header -->
     <header class="site-header">
       <div
@@ -143,8 +154,8 @@
           <video
             class="hero-slide is-active"
             data-hero-video
-            data-client="Bagovit Solar"
-            data-title="Protección solar"
+            data-client="WACH"
+            data-title="VIDEO INICIO"
             data-description="Film de marca"
             muted
             playsinline
