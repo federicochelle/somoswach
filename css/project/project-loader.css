@@ -10,8 +10,8 @@
   display: grid;
   place-items: center;
   transition:
-    opacity 2520ms ease,
-    visibility 2520ms ease;
+    opacity 320ms ease,
+    visibility 320ms ease;
 }
 
 .page-loader.hide {
@@ -40,7 +40,7 @@
   object-fit: contain;
   display: block;
   opacity: 0;
-  animation: logoFadeIn 900ms ease forwards;
+  animation: logoFadeIn 1200ms ease forwards;
 }
 
 @keyframes logoFadeIn {
