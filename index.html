@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/project/sectionprojects.css" />
 
     <!-- Preload del video (mejora performance) -->
-    <link rel="preload" as="video" href="assets/hero.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="assets/hero1.webm" type="video/mp4" />
   </head>
 
   <body>
@@ -153,7 +153,7 @@
             preload="metadata"
             poster="assets/hero-1.webp"
           >
-            <source src="assets/hero-1.mp4" type="video/mp4" />
+            <source src="assets/hero1.webm" type="video/mp4" />
           </video>
         </div>
 
@@ -361,8 +361,8 @@
           }
         });
 
-        const MIN_TIME = 2400;
-        const MAX_TIME = 3800;
+        const MIN_TIME = 3400;
+        const MAX_TIME = 4800;
         const start = performance.now();
         let hidden = false;
 
@@ -382,7 +382,7 @@
             try {
               loader.remove();
             } catch {}
-          }, 560);
+          }, 1060);
         }
 
         function done() {

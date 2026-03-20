@@ -229,7 +229,7 @@
   }
 }
 
-.about-story {
+.about-hero {
   position: relative;
 
   background-image: url("../../assets/backgroundd.webp");
@@ -240,7 +240,7 @@
 
 /* overlay */
 
-.about-story::before {
+.about-hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -250,7 +250,7 @@
 
 /* contenido arriba del overlay */
 
-.about-story .container {
+.about-hero .container {
   position: relative;
   z-index: 1;
 }

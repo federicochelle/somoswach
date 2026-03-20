@@ -10,8 +10,8 @@
   display: grid;
   place-items: center;
   transition:
-    opacity 520ms ease,
-    visibility 520ms ease;
+    opacity 2520ms ease,
+    visibility 2520ms ease;
 }
 
 .page-loader.hide {
