@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/project/sectionprojects.css" />
 
-    <!-- Preload del video (mejora performance) -->
-    <link rel="preload" as="video" href="../assets/hero1.webm" type="video/mp4" />
   </head>
 
   <body>
@@ -34,10 +32,9 @@
     class="loader-video"
     autoplay
     muted
-    loop
     playsinline
   >
-    <source src="../assets/loader.webm" type="video/webm" />
+    <source src="../assets/loader.mp4" type="video/mp4" />
   </video>
 
   <div class="loader-inner">
@@ -145,35 +142,21 @@
       <!-- =========================
      HERO — Single Video + Progress
 ========================== -->
-      <section class="hero" id="hero" aria-labelledby="hero-title">
+      <section class="hero" id="hero" aria-label="Main hero">
         <div class="hero-media" aria-hidden="true">
           <video
-            class="hero-slide is-active"
+            class="hero-video"
             data-hero-video
-            data-client="WACH"
-            data-title="Video inici"
-            data-description="Film de marca"
             muted
             playsinline
-            
-            loop
             preload="metadata"
-            poster="../assets/hero-1.webp"
+            poster="../assets/poster.webp"
           >
             <source src="../assets/hero1.webm" type="video/webm">
           </video>
         </div>
 
         <div class="hero-overlay" aria-hidden="true"></div>
-
-        <!-- Texto abajo izquierda -->
-        <div class="container hero-content">
-          <div class="max-w-lg stack-md" id="hero-text">
-            <p class="text-muted" id="hero-client"></p>
-            <h1 id="hero-title" class="hero-title"></h1>
-            <p class="section-subtitle" id="hero-description"></p>
-          </div>
-        </div>
 
         <!-- Barra única abajo -->
         <div class="hero-progress" aria-hidden="true">
@@ -328,113 +311,7 @@
         <span class="footer-copy">©️ <span id="year"></span> WACH</span>
       </div>
     </footer>
-    <script>
-      (function () {
-        const loader = document.getElementById("page-loader");
-        const root = document.documentElement; // <html>
-
-        // Si no hay loader, igual aseguramos estado listo
-        if (!loader) {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-          return;
-        }
-
-        const reduceMotion =
-          window.matchMedia &&
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        // ✅ 1) No volver a mostrar el loader si ya se vio en esta sesión
-        // (cuando volvés al index desde otra página)
-        const KEY = "wach_loader_seen_v1";
-
-        // ✅ 2) Manejo BFCache (volver atrás/adelante). Evita que se re-anime.
-        window.addEventListener("pageshow", (e) => {
-          if (e.persisted) {
-            try {
-              sessionStorage.setItem(KEY, "1");
-            } catch {}
-            root.classList.remove("is-loading");
-            root.classList.add("is-ready");
-            loader.remove();
-          }
-        });
-
-        // Si ya lo vio: no animar, mostrar sitio directo
-        let seen = false;
-        try {
-          seen = sessionStorage.getItem(KEY) === "1";
-        } catch {}
-
-        if (reduceMotion || seen) {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-          try {
-            loader.remove();
-          } catch {}
-          return;
-        }
-
-        // A partir de acá: primera visita de la sesión → animamos loader
-        const MIN_TIME = 3400; // 1200–1800 recomendado
-        const MAX_TIME = 4800;
-        const start = performance.now();
-        let hidden = false;
-
-        function showSite() {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-        }
-
-        function hideLoader() {
-          if (hidden) return;
-          hidden = true;
-
-          // Marcamos que ya se vio en esta sesión
-          try {
-            sessionStorage.setItem(KEY, "1");
-          } catch {}
-
-          // Primero entra el sitio, luego se desvanece el loader
-          showSite();
-
-          loader.classList.add("hide");
-          setTimeout(() => {
-            try {
-              loader.remove();
-            } catch {}
-          }, 1060);
-        }
-
-        function done() {
-          const elapsed = performance.now() - start;
-          const wait = Math.max(MIN_TIME - elapsed, 0);
-          setTimeout(hideLoader, wait);
-        }
-
-        // Esperar al poster del hero si existe (mejor percepción)
-        window.addEventListener("DOMContentLoaded", () => {
-          const hero = document.querySelector(
-            ".hero-slide.is-active, [data-hero-video]",
-          );
-          const poster = hero && hero.getAttribute("poster");
-
-          if (!poster) {
-            done();
-            return;
-          }
-
-          const img = new Image();
-          img.onload = done;
-          img.onerror = done;
-          img.src = poster;
-        });
-
-        // Fallback duro
-        setTimeout(hideLoader, MAX_TIME);
-      })();
-    </script>
-
+    <script src="../js/loader.js"></script>
     <script src="../js/hero.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../js/supabase.js"></script>

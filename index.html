@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/project/sectionprojects.css" />
 
-    <!-- Preload del video (mejora performance) -->
-    <link rel="preload" as="video" href="assets/hero1.webm" type="video/mp4" />
   </head>
 
   <body>
@@ -34,10 +32,9 @@
     class="loader-video"
     autoplay
     muted
-    loop
     playsinline
   >
-    <source src="assets/loader.webm" type="video/webm" />
+    <source src="assets/loader.mp4" type="video/mp4" />
   </video>
 
   <div class="loader-inner">
@@ -149,35 +146,21 @@
       <!-- =========================
      HERO — Single Video + Progress
 ========================== -->
-      <section class="hero" id="hero" aria-labelledby="hero-title">
+      <section class="hero" id="hero" aria-label="Hero principal">
         <div class="hero-media" aria-hidden="true">
           <video
-            class="hero-slide is-active"
+            class="hero-video"
             data-hero-video
-            data-client="WACH"
-            data-title="VIDEO INICIO"
-            data-description="Film de marca"
             muted
             playsinline
-           
-            loop
             preload="metadata"
-            poster="assets/hero-1.webp"
+            poster="assets/poster.webp"
           >
             <source src="assets/hero1.webm" type="video/webm" />
           </video>
         </div>
 
         <div class="hero-overlay" aria-hidden="true"></div>
-
-        <!-- Texto abajo izquierda -->
-        <div class="container hero-content">
-          <div class="max-w-lg stack-md" id="hero-text">
-            <p class="text-muted" id="hero-client"></p>
-            <h1 id="hero-title" class="hero-title"></h1>
-            <p class="section-subtitle" id="hero-description"></p>
-          </div>
-        </div>
 
         <!-- Barra única abajo -->
         <div class="hero-progress" aria-hidden="true">
@@ -332,97 +315,7 @@
         <span class="footer-copy">© <span id="year"></span> WACH</span>
       </div>
     </footer>
-    <script>
-      (function () {
-        const loader = document.getElementById("page-loader");
-        const root = document.documentElement;
-
-        if (!loader) {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-          return;
-        }
-
-        const reduceMotion =
-          window.matchMedia &&
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        function showSiteImmediately() {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-          try {
-            loader.remove();
-          } catch {}
-        }
-
-        // Detectar tipo de navegación
-        const navEntries = performance.getEntriesByType("navigation");
-        const navType = navEntries.length ? navEntries[0].type : "navigate";
-
-        // Si vuelve atrás/adelante, NO mostrar loader
-        if (reduceMotion || navType === "back_forward") {
-          showSiteImmediately();
-          return;
-        }
-
-        // Seguridad extra para BFCache
-        window.addEventListener("pageshow", (e) => {
-          if (e.persisted) {
-            showSiteImmediately();
-          }
-        });
-
-        const MIN_TIME = 2400;
-        const MAX_TIME = 2800;
-        const start = performance.now();
-        let hidden = false;
-
-        function showSite() {
-          root.classList.remove("is-loading");
-          root.classList.add("is-ready");
-        }
-
-        function hideLoader() {
-          if (hidden) return;
-          hidden = true;
-
-          showSite();
-          loader.classList.add("hide");
-
-          setTimeout(() => {
-            try {
-              loader.remove();
-            } catch {}
-          }, 860);
-        }
-
-        function done() {
-          const elapsed = performance.now() - start;
-          const wait = Math.max(MIN_TIME - elapsed, 0);
-          setTimeout(hideLoader, wait);
-        }
-
-        window.addEventListener("DOMContentLoaded", () => {
-          const hero = document.querySelector(
-            ".hero-slide.is-active, [data-hero-video]",
-          );
-          const poster = hero && hero.getAttribute("poster");
-
-          if (!poster) {
-            done();
-            return;
-          }
-
-          const img = new Image();
-          img.onload = done;
-          img.onerror = done;
-          img.src = poster;
-        });
-
-        setTimeout(hideLoader, MAX_TIME);
-      })();
-    </script>
-
+    <script src="js/loader.js"></script>
     <script src="js/hero.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>

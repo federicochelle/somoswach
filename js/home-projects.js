@@ -22,13 +22,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       const title = project[`title_${lang}`] || project.title_es || "";
       const client = project.client || "";
       const role = project[`role_${lang}`] || project.role_es || "";
+      const imageUrl = project.image_cf || project.image || "";
 
       return `
         <a class="project-card"
           data-category="${project.category}"
           href="${projectPage}?slug=${project.slug}">
 
-          <img src="${project.image}" alt="${title}">
+          <img src="${imageUrl}" alt="${title}">
 
           <div class="project-overlay">
             <div class="project-meta">

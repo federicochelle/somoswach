@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       .map((p) => {
         const relatedTitle = p[`title_${lang}`] || p.title_es || "";
         const relatedRole = p[`role_${lang}`] || p.role_es || "";
+        const imageUrl = p.image_cf || p.image || "";
 
         return `
       <a
@@ -87,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         data-category="${p.category}"
         href="${relatedPage}?slug=${p.slug}"
       >
-        <img src="${p.image}" alt="${relatedTitle}">
+        <img src="${imageUrl}" alt="${relatedTitle}">
 
         <div class="project-overlay">
           <div class="project-meta">
