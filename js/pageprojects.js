@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { data: projects, error } = await window.supabaseClient
     .from("projects")
     .select("*")
-    .eq("published", true);
+    .eq("published", true)
+    .order("position", { ascending: true });
 
   if (error) {
     console.error("Error cargando projects:", error);
