@@ -10,28 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function applyFilter(filter) {
-    const cards = document.querySelectorAll(".project-card");
-
-    cards.forEach((card) => {
-      const category = (card.dataset.category || "").toLowerCase();
-      const shouldShow = filter === "all" || category === filter;
-
-      if (shouldShow) {
-        card.style.display = "";
-        card.removeAttribute("aria-hidden");
-      } else {
-        card.style.display = "none";
-        card.setAttribute("aria-hidden", "true");
-      }
-    });
+  function notifyFilterChange(filter) {
+    document.dispatchEvent(
+      new CustomEvent("projects:filter-change", {
+        detail: { filter },
+      }),
+    );
   }
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const filter = (btn.dataset.filter || "all").toLowerCase();
       setActiveButton(btn);
-      applyFilter(filter);
+      notifyFilterChange(filter);
     });
   });
 
@@ -39,5 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons.find((b) => b.classList.contains("is-active")) || buttons[0];
 
   setActiveButton(initialBtn);
-  applyFilter((initialBtn.dataset.filter || "all").toLowerCase());
+  notifyFilterChange((initialBtn.dataset.filter || "all").toLowerCase());
 });
