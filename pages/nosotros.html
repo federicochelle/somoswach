@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
 
     <title>Nosotros | WACH</title>
     <meta
@@ -24,7 +27,7 @@
     <!-- (opcional) si querés priorizar la primera imagen -->
     <link rel="preload" as="image" href="../assets/projects/itau/01.webp" />
   </head>
-  <body>    
+  <body class="page-about page-about--static">    
     <!-- Header -->
     <header class="site-header">
       <div
@@ -46,8 +49,6 @@
         <nav class="nav nav-desktop" aria-label="Navegación principal">
           <a class="nav-link" href="../index.html">PROYECTOS</a>
           <a class="nav-link" href="nosotros.html">NOSOTROS</a>
-          <a class="nav-link" href="#servicios">SERVICIOS</a>
-
           <a class="nav-link" href="#footer">CONTACTO</a>
 
           <!-- Language switch -->
@@ -93,8 +94,6 @@
             >PROYECTOS</a
           >
           <a class="nav-link" href="nosotros.html">NOSOTROS</a>
-          <a class="nav-link" href="#servicios" data-menu-close>SERVICIOS</a>
-
           <a class="nav-link" href="#footer" data-menu-close>CONTACTO</a>
 
          <!-- Language switch -->
@@ -122,17 +121,23 @@
     <main class="about-page">
       <!-- HERO -->
       <section class="about-hero section">
-        <div class="container container-wide">
+        <div class="container container-wide reveal-section">
           <div class="about-hero-grid">
-            <div class="about-hero-copy stack-sm">
+            <div class="about-hero-copy about-copy stack-md">
               <span class="about-kicker"></span>
               <h1 class="about-title">NOSOTROS</h1>
-
-              <p class="about-lead">
-                Una productora audiovisual enfocada en crear imágenes con
-                intención, identidad y narrativa. En WACH desarrollamos piezas
-                audiovisuales pensadas para conectar marcas, ideas y personas a
-                través de una mirada visual contemporánea.
+              <p>
+                WACH es una productora audiovisual que trabaja desde la
+                imagen, el ritmo y la intención. Hacemos piezas para marcas,
+                campañas y proyectos que necesitan una mirada clara, no una
+                fórmula.
+              </p>
+              <p>
+                Nos interesa que cada proyecto tenga una identidad visual
+                propia. Por eso pensamos el proceso completo: idea,
+                producción, rodaje y post. No tratamos la estética como un
+                agregado, sino como parte de lo que la pieza dice y de cómo
+                queda en la memoria.
               </p>
             </div>
 
@@ -140,106 +145,218 @@
               <img src="../assets/nosotrosimage.jpeg" alt="" />
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- HISTORIA -->
-      <section class="section about-story">
-        <div class="container">
-          <div class="grid grid-2 about-story-grid">
-            <div class="stack-sm">
-              <span class="about-kicker"></span>
-              <h2>Cómo nació la productora</h2>
-            </div>
+          <div class="about-story-editorial about-hero-story">
+            <article class="about-story-row about-story-row--reverse">
+              <figure class="about-story-media">
+                <img
+                  src="../assets/camarografo.webp"
+                  alt="Integrantes de WACH en una prueba de luces durante un rodaje nocturno"
+                />
+              </figure>
 
-            <div class="stack-sm about-copy">
-              <p>
-                WACH nació con la intención de construir una productora capaz de
-                combinar sensibilidad estética, ejecución técnica y una forma de
-                trabajo cercana a cada proyecto.
-              </p>
-              <p>
-                Desde el comienzo, la búsqueda fue clara: desarrollar piezas
-                visuales con carácter, cuidando tanto la dirección creativa como
-                cada detalle de producción, filmación y postproducción.
-              </p>
-              <p>
-                Hoy trabajamos en proyectos que van desde contenido para marcas
-                hasta campañas, piezas institucionales y producciones con una
-                identidad visual fuerte y consistente.
-              </p>
-            </div>
+              <div class="about-copy stack-md">
+                <p>
+                  Trabajamos en contenido de marca, campañas, piezas
+                  institucionales y producciones donde la dirección visual
+                  importa de verdad. Buscamos construir imágenes con criterio,
+                  sostener una narrativa sólida y cuidar cada decisión técnica
+                  para que el resultado tenga carácter.
+                </p>
+                <p>
+                  No hacemos contenido para llenar espacio. Hacemos piezas que
+                  se sostienen en la mirada.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
    
       
+      <!-- MÉTRICAS -->
+      <section class="section about-stats">
+        <div class="container container-wide reveal-section">
+          <div class="logo-rows" aria-label="Logos en movimiento">
+            <div class="logo-marquee" aria-hidden="true">
+              <div class="logo-marquee__track">
+                <div class="logo-marquee__group">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+
+                <div class="logo-marquee__group" aria-hidden="true">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+              </div>
+            </div>
+
+            <div class="logo-marquee logo-marquee--reverse" aria-hidden="true">
+              <div class="logo-marquee__track">
+                <div class="logo-marquee__group">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+
+                <div class="logo-marquee__group" aria-hidden="true">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-3 stats-grid">
+            <div class="stat-item stack-xs text-center">
+              <h3 class="stat-number" data-target="50" data-prefix="+">+50</h3>
+              <p class="stat-label">proyectos realizados</p>
+            </div>
+
+            <div class="stat-item stack-xs text-center">
+              <h3 class="stat-number" data-target="20" data-prefix="+">+20</h3>
+              <p class="stat-label">marcas acompañadas</p>
+            </div>
+
+            <div class="stat-item stack-xs text-center">
+              <h3 class="stat-number" data-target="100" data-suffix="%">100%</h3>
+              <p class="stat-label">enfoque creativo y técnico</p>
+            </div>
+          </div>
+
+          <div class="logo-rows" aria-label="Logos en movimiento">
+            <div class="logo-marquee" aria-hidden="true">
+              <div class="logo-marquee__track">
+                <div class="logo-marquee__group">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+
+                <div class="logo-marquee__group" aria-hidden="true">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+              </div>
+            </div>
+
+            <div class="logo-marquee logo-marquee--reverse" aria-hidden="true">
+              <div class="logo-marquee__track">
+                <div class="logo-marquee__group">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+
+                <div class="logo-marquee__group" aria-hidden="true">
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                  <img src="../assets/navbar.webp" alt="" class="logo-marquee__logo" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- VALORES -->
       <section class="section about-values">
-        <div class="container container-wide">
+        <div class="container container-wide reveal-section">
           <div class="stack-lg text-center max-w-lg">
             <span class="about-kicker"></span>
             <h2>Lo que buscamos en cada proyecto</h2>
           </div>
 
-          <div class="grid grid-3 values-grid">
-            <article class="value-card stack-sm">
-              <h3>Mirada visual</h3>
-              <p>
-                Cada pieza parte de una decisión estética clara. Buscamos
-                imágenes que transmitan identidad y no solo presencia.
-              </p>
+          <div class="values-grid">
+            <article class="value-card">
+              <div class="value-card__content">
+                <div class="value-card__copy stack-sm">
+                  <h3>Mirada visual</h3>
+                  <p>
+                    Cada pieza nace de una decisión estética concreta. Buscamos
+                    imágenes con identidad, atmósfera y una presencia que se
+                    recuerde.
+                  </p>
+                </div>
+              </div>
+
+              <figure class="value-card__media">
+                <img
+                  src="../assets/matute.webp"
+                  alt="Retrato con una composición visual marcada y cinematográfica"
+                />
+              </figure>
             </article>
 
-            <article class="value-card stack-sm">
-              <h3>Narrativa</h3>
-              <p>
-                Nos interesa construir relatos visuales sólidos, con ritmo,
-                intención y coherencia en cada plano.
-              </p>
+            <article class="value-card">
+              <div class="value-card__content">
+                <div class="value-card__copy stack-sm">
+                  <h3>Narrativa</h3>
+                  <p>
+                    Nos interesa construir relatos visuales con ritmo,
+                    intención y coherencia, donde cada plano empuje la pieza
+                    hacia adelante.
+                  </p>
+                </div>
+              </div>
+
+              <figure class="value-card__media">
+                <img
+                  src="../assets/rodaje.webp"
+                  alt="Escena de rodaje en proceso con foco en la narrativa visual"
+                />
+              </figure>
             </article>
 
-            <article class="value-card stack-sm">
-              <h3>Producción cuidada</h3>
-              <p>
-                Entendemos la producción como parte del resultado final:
-                organización, criterio y atención al detalle.
-              </p>
+            <article class="value-card">
+              <div class="value-card__content">
+                <div class="value-card__copy stack-sm">
+                  <h3>Producción cuidada</h3>
+                  <p>
+                    Entendemos la producción como parte del resultado: criterio,
+                    organización y detalle para que la ejecución sostenga la
+                    idea.
+                  </p>
+                </div>
+              </div>
+
+              <figure class="value-card__media">
+                <img
+                  src="../assets/produ.webp"
+                  alt="Momento de producción con una ejecución técnica cuidada en set"
+                />
+              </figure>
             </article>
-          </div>
-
-          
-        </div>
-      </section>
-
-      <!-- MÉTRICAS -->
-      <section class="section about-stats">
-        <div class="container container-wide">
-           <div class="stack-sm text-center max-w-md">
-            <span class="about-kicker"></span>
-            <h2>Construimos piezas audiovisuales con intención.</h2>
-            <p>
-              Nos interesa trabajar con marcas, proyectos y personas que
-              entienden el valor de una imagen bien pensada.
-            </p>
-          </div>
-        
-          <div class="grid grid-3 stats-grid">
-            <div class="stat-item stack-xs text-center">
-              <h3 class="stat-number">+50</h3>
-              <p class="stat-label">proyectos realizados</p>
-            </div>
-
-            <div class="stat-item stack-xs text-center">
-              <h3 class="stat-number">+20</h3>
-              <p class="stat-label">marcas acompañadas</p>
-            </div>
-
-            <div class="stat-item stack-xs text-center">
-              <h3 class="stat-number">100%</h3>
-              <p class="stat-label">enfoque creativo y técnico</p>
-            </div>
           </div>
         </div>
       </section>
@@ -333,7 +450,8 @@
     <script src="../js/navbar.js"></script>
     <script src="../js/filters.js"></script>
     <script src="../js/cardsgallery.js"></script>
-
+    <script src="../js/nosotros-reveal.js"></script>
+    <script src="../js/nosotros-counters.js"></script>
     <script src="../js/languajebutton.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
