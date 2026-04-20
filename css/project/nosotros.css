@@ -12,7 +12,7 @@
 ========================= */
 
 .page-about {
-  --about-shell-max: 1280px;
+  --about-shell-max: max(1280px, 92vw);
   --about-shell-pad: clamp(1.5rem, 3.6vw, 2.5rem);
   --about-image-fade-x: 12%;
   --about-image-fade-y: 14%;
@@ -552,6 +552,9 @@
   }
 
   .logo-rows {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     gap: 1.5rem;
   }
 
