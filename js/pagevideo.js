@@ -24,6 +24,7 @@ function initProjectVimeoPlayer() {
 
   let duration = 0;
   let uiTimer = null;
+  let isPlaying = false;
 
   // =========================
   // HELPERS
@@ -38,10 +39,25 @@ function initProjectVimeoPlayer() {
     return `${m}:${pad(sec)}`;
   };
 
+  const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+
+  const isNativeFullscreen = () =>
+    document.fullscreenElement === wrap ||
+    document.webkitFullscreenElement === wrap;
+
+  const setPlayerError = (error, context = "Vimeo player") => {
+    console.warn(`${context}:`, error);
+    wrap.classList.add("is-error", "ui-active");
+  };
+
   const setPlayingUI = (playing) => {
+    isPlaying = playing;
     wrap.classList.toggle("is-playing", playing);
+    wrap.classList.toggle("is-paused", !playing);
 
     if (btnPlay) {
+      btnPlay.setAttribute("aria-pressed", String(playing));
+      btnPlay.setAttribute("aria-label", playing ? "Pausar" : "Reproducir");
       btnPlay.innerHTML = playing
         ? `<svg viewBox="0 0 24 24" class="player-icon">
            <path d="M6 5h4v14H6zm8 0h4v14h-4z"/>
@@ -57,9 +73,12 @@ function initProjectVimeoPlayer() {
   // =========================
   if (volRange) {
     // setear slider según volumen actual del player
-    player.getVolume().then((v) => {
-      volRange.value = String(v ?? 0.8);
-    });
+    player
+      .getVolume()
+      .then((v) => {
+        volRange.value = String(v ?? 0.8);
+      })
+      .catch((error) => setPlayerError(error, "No se pudo leer el volumen"));
 
     // cuando el usuario mueve el slider
     volRange.addEventListener("input", async (e) => {
@@ -67,7 +86,11 @@ function initProjectVimeoPlayer() {
 
       const val = Number(e.target.value);
 
-      await player.setVolume(val);
+      try {
+        await player.setVolume(val);
+      } catch (error) {
+        setPlayerError(error, "No se pudo cambiar el volumen");
+      }
     });
 
     // evitar que el click pause el video
@@ -92,71 +115,108 @@ function initProjectVimeoPlayer() {
     hideUILater();
   };
 
-  const showUIOnly = () => {
-    wrap.classList.add("ui-active");
-    hideUILater();
+  const addRevealListeners = (element) => {
+    if (!element) return;
+
+    element.addEventListener("pointermove", showUI);
+    element.addEventListener("pointerenter", showUI);
+    element.addEventListener("mousemove", showUI);
+    element.addEventListener("mouseenter", showUI);
   };
 
   // =========================
   // FULLSCREEN
   // =========================
 
-  const enterFullscreen = () => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const enterFakeFullscreen = () => {
+    wrap.classList.add("is-fs", "ui-active");
+    document.body.classList.add("is-locked");
+  };
 
-    if (isMobile) {
-      wrap.classList.add("is-fs");
-      document.body.classList.add("is-locked");
+  const exitFakeFullscreen = () => {
+    wrap.classList.remove("is-fs");
+    document.body.classList.remove("is-locked");
+  };
+
+  const enterNativeFullscreen = () => {
+    if (isNativeFullscreen()) return;
+
+    const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
+    if (!req) return;
+
+    try {
+      const request = req.call(wrap);
+      if (request?.catch) {
+        request.catch((error) =>
+          setPlayerError(error, "No se pudo entrar en pantalla completa"),
+        );
+      }
+    } catch (error) {
+      setPlayerError(error, "No se pudo entrar en pantalla completa");
+    }
+  };
+
+  const exitNativeFullscreen = () => {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (!exit) return;
+
+    try {
+      const request = exit.call(document);
+      if (request?.catch) {
+        request.catch((error) =>
+          setPlayerError(error, "No se pudo salir de pantalla completa"),
+        );
+      }
+    } catch (error) {
+      setPlayerError(error, "No se pudo salir de pantalla completa");
+    }
+  };
+
+  const enterFullscreen = () => {
+    if (isMobile()) {
+      enterFakeFullscreen();
       return;
     }
 
-    const isFs = document.fullscreenElement || document.webkitFullscreenElement;
-
-    if (isFs) return;
-
-    const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-
-    if (req) req.call(wrap);
+    enterNativeFullscreen();
   };
 
   const toggleFullscreen = () => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (isMobile) {
-      const isFakeFs = wrap.classList.contains("is-fs");
-
-      wrap.classList.toggle("is-fs", !isFakeFs);
-      document.body.classList.toggle("is-locked", !isFakeFs);
-
+    if (wrap.classList.contains("is-fs")) {
+      exitFakeFullscreen();
       return;
     }
 
-    const isFs = document.fullscreenElement || document.webkitFullscreenElement;
-
-    if (!isFs) {
-      const req = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-
-      if (req) req.call(wrap);
-    } else {
-      const exit = document.exitFullscreen || document.webkitExitFullscreen;
-
-      if (exit) exit.call(document);
+    if (isMobile()) {
+      enterFakeFullscreen();
+      return;
     }
+
+    if (isNativeFullscreen()) {
+      exitNativeFullscreen();
+      return;
+    }
+
+    enterNativeFullscreen();
   };
   // =========================
   // PLAY / PAUSE
   // =========================
 
   const togglePlay = async (enterFsOnPlay = false) => {
-    showUIOnly();
+    showUI();
 
-    const paused = await player.getPaused();
+    try {
+      const paused = await player.getPaused();
 
-    if (paused) {
-      if (enterFsOnPlay) enterFullscreen();
-      await player.play();
-    } else {
-      await player.pause();
+      if (paused) {
+        if (enterFsOnPlay) enterFullscreen();
+        await player.play();
+      } else {
+        await player.pause();
+      }
+    } catch (error) {
+      setPlayerError(error, "No se pudo alternar play/pause");
     }
   };
 
@@ -165,7 +225,9 @@ function initProjectVimeoPlayer() {
     btnPlay.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      togglePlay(true);
+
+      if (!isPlaying) enterFullscreen();
+      togglePlay(false);
     });
   }
 
@@ -174,28 +236,19 @@ function initProjectVimeoPlayer() {
     hitarea.addEventListener("click", () => {
       togglePlay(false);
     });
-
-    hitarea.addEventListener("mousemove", showUIOnly);
-    hitarea.addEventListener("mouseenter", showUIOnly);
   }
 
   // si entra a la zona de controles o barra, reaparecen
-  if (controls) {
-    controls.addEventListener("mousemove", showUIOnly);
-    controls.addEventListener("mouseenter", showUIOnly);
-  }
-
-  if (bar) {
-    bar.addEventListener("mousemove", showUIOnly);
-    bar.addEventListener("mouseenter", showUIOnly);
-  }
+  addRevealListeners(hitarea);
+  addRevealListeners(controls);
+  addRevealListeners(bar);
 
   // botón fullscreen
   if (btnFs) {
     btnFs.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      showUIOnly();
+      showUI();
       toggleFullscreen();
     });
   }
@@ -204,15 +257,19 @@ function initProjectVimeoPlayer() {
   if (bar) {
     bar.addEventListener("click", async (e) => {
       e.stopPropagation();
-      showUIOnly();
+      showUI();
 
-      if (!duration) duration = await player.getDuration();
+      try {
+        if (!duration) duration = await player.getDuration();
 
-      const rect = bar.getBoundingClientRect();
-      const x = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
-      const pct = rect.width ? x / rect.width : 0;
+        const rect = bar.getBoundingClientRect();
+        const x = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+        const pct = rect.width ? x / rect.width : 0;
 
-      player.setCurrentTime(pct * duration).catch(() => {});
+        await player.setCurrentTime(pct * duration);
+      } catch (error) {
+        setPlayerError(error, "No se pudo mover el progreso");
+      }
     });
   }
 
@@ -220,13 +277,19 @@ function initProjectVimeoPlayer() {
   // INIT
   // =========================
 
-  player.getDuration().then((d) => {
-    duration = d || 0;
+  setPlayingUI(false);
+  wrap.classList.add("is-ready", "ui-active");
 
-    if (elTime) {
-      elTime.textContent = `0:00 / ${format(duration)}`;
-    }
-  });
+  player
+    .getDuration()
+    .then((d) => {
+      duration = d || 0;
+
+      if (elTime) {
+        elTime.textContent = `0:00 / ${format(duration)}`;
+      }
+    })
+    .catch((error) => setPlayerError(error, "No se pudo leer la duración"));
 
   // =========================
   // PLAYER EVENTS
@@ -260,6 +323,32 @@ function initProjectVimeoPlayer() {
 
     if (elTime) {
       elTime.textContent = `${format(data.seconds)} / ${format(duration)}`;
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!isNativeFullscreen()) wrap.classList.add("ui-active");
+  });
+
+  document.addEventListener("webkitfullscreenchange", () => {
+    if (!isNativeFullscreen()) wrap.classList.add("ui-active");
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobile()) exitFakeFullscreen();
+  });
+
+  window.addEventListener("orientationchange", () => {
+    window.setTimeout(() => {
+      if (!isMobile()) exitFakeFullscreen();
+      showUI();
+    }, 250);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && wrap.classList.contains("is-fs")) {
+      exitFakeFullscreen();
+      showUI();
     }
   });
 }

@@ -3,23 +3,29 @@
 ========================= */
 
 .project-video--bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  margin-inline: 0;
+  background: #000;
 }
 
 /* contenedor fullscreen real */
 .project-video-inner {
+  --project-video-height: 100vh;
+  --video-ratio: 1.7777778;
+  --video-ratio-inverse: 0.5625;
+
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: var(--project-video-height);
+  min-height: var(--project-video-height);
   overflow: hidden;
+  background: #000;
 }
 
 /* viewport moderno */
 @supports (height: 100dvh) {
   .project-video-inner {
-    min-height: 100dvh;
+    --project-video-height: 100dvh;
   }
 }
 
@@ -32,11 +38,11 @@
   top: 50%;
   left: 50%;
 
-  width: 100vw;
-  height: 56.25vw; /* 16:9 */
-
-  min-height: 100%;
-  min-width: 177.77vh;
+  width: max(100vw, calc(var(--project-video-height) * var(--video-ratio)));
+  height: max(
+    var(--project-video-height),
+    calc(100vw * var(--video-ratio-inverse))
+  );
 
   transform: translate(-50%, -50%);
   border: 0;
@@ -54,11 +60,21 @@
   pointer-events: none;
 
   opacity: 0;
-  transition: opacity 220ms ease;
+  transition: opacity 600ms ease;
 }
 
+.project-video-inner:not(.is-playing) .player-ui,
 .project-video-inner:hover .player-ui,
 .project-video-inner.ui-active .player-ui {
+  opacity: 1;
+}
+
+.project-video-inner.is-playing .player-ui {
+  opacity: 0;
+}
+
+.project-video-inner.is-playing:hover .player-ui,
+.project-video-inner.is-playing.ui-active .player-ui {
   opacity: 1;
 }
 
@@ -184,6 +200,21 @@
     bottom: 12px;
     padding: 9px 10px;
     border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .player-left,
+  .player-right {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .player-progress {
+    min-width: 0;
+  }
+
+  .player-volume {
+    min-width: 0;
   }
 
   .player-time {
@@ -204,15 +235,10 @@
   padding-block: 0;
 }
 
-/* Fade más lento */
-.player-ui {
-  transition: opacity 600ms ease;
+body.project-page {
+  font-weight: 400;
 }
 
-/* Cuando está reproduciendo, escondemos la UI (pero puede volver con hover / ui-active si querés) */
-.project-video-inner.is-playing .player-ui {
-  opacity: 0;
-}
 /* =====================================================
    PROJECT META (OPCIÓN B — Impacto / Más grande)
    Scopeado para que NO pise la grilla del index
@@ -268,6 +294,7 @@
 .section.project .project-client {
   margin: 0;
   font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -286,6 +313,7 @@
   margin: 0;
   max-width: 62ch;
   font-size: clamp(1rem, 1.15vw, 1.15rem);
+  font-weight: 400;
   line-height: 1.72;
   color: var(--color-text-muted);
 }
@@ -313,8 +341,13 @@
   gap: 0.25rem;
 }
 
+.section.project .project-details li strong {
+  font-weight: 500;
+}
+
 .section.project .project-details li span {
   font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -378,30 +411,6 @@
 }
 
 /* =========================
-   UI comportamiento tipo reproductor
-========================= */
-
-.player-ui {
-  opacity: 0;
-  transition: opacity 600ms ease;
-}
-
-/* SOLO JS decide cuándo se muestra */
-.project-video-inner.ui-active .player-ui {
-  opacity: 1;
-}
-
-/* si está reproduciendo, por defecto oculta */
-.project-video-inner.is-playing .player-ui {
-  opacity: 0;
-}
-
-/* si JS activa ui-active mientras reproduce, vuelve a aparecer */
-.project-video-inner.is-playing.ui-active .player-ui {
-  opacity: 1;
-}
-
-/* =========================
    ICONS / BUTTONS
 ========================= */
 
@@ -458,6 +467,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 700px) {
+  .player-volume-range {
+    width: clamp(54px, 18vw, 80px);
+  }
+}
+
 /* =========================================
    PROJECT HERO BACKGROUND
 ========================================= */
@@ -478,22 +493,21 @@
 ========================= */
 @media (max-width: 768px) {
   .project-video-inner.is-fs {
+    --project-video-height: 100svh;
+
     position: fixed;
     inset: 0;
     width: 100vw;
-    height: 100svh;
+    height: var(--project-video-height);
+    min-height: var(--project-video-height);
     z-index: 9999;
     background: #000;
   }
 
   .project-video-inner.is-fs iframe {
-    width: 100vw;
-    height: 100svh;
-    min-width: 100vw;
-    min-height: 100svh;
-    top: 0;
-    left: 0;
-    transform: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .project-video-inner.is-fs .player-controls {

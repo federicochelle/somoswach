@@ -1,3 +1,111 @@
+function normalizeVimeoUrl(rawUrl) {
+  const trimmedUrl = String(rawUrl || "").trim();
+  if (!trimmedUrl) return "";
+
+  try {
+    let url = new URL(trimmedUrl);
+    const isVimeoPage =
+      /(^|\.)vimeo\.com$/i.test(url.hostname) &&
+      !url.hostname.toLowerCase().startsWith("player.");
+
+    if (isVimeoPage) {
+      const segments = url.pathname.split("/").filter(Boolean);
+      const videoIndex = segments.findIndex((segment) => /^\d+$/.test(segment));
+      const videoId = videoIndex >= 0 ? segments[videoIndex] : "";
+
+      if (videoId) {
+        const embedUrl = new URL(`https://player.vimeo.com/video/${videoId}`);
+        const privateHash =
+          url.searchParams.get("h") || segments[videoIndex + 1];
+
+        if (privateHash && !/^\d+$/.test(privateHash)) {
+          embedUrl.searchParams.set("h", privateHash);
+        }
+
+        url.searchParams.forEach((value, key) => {
+          if (key !== "h") embedUrl.searchParams.set(key, value);
+        });
+
+        url = embedUrl;
+      }
+    }
+
+    url.searchParams.set("autopause", "0");
+    url.searchParams.set("controls", "0");
+    url.searchParams.set("dnt", "1");
+    url.searchParams.set("playsinline", "1");
+
+    return url.toString();
+  } catch (error) {
+    console.warn("URL de Vimeo inválida:", rawUrl, error);
+    return trimmedUrl;
+  }
+}
+
+function parseVideoRatio(value) {
+  const text = String(value || "").trim().toLowerCase();
+  if (!text) return null;
+
+  const ratioMatch = text.match(/(\d+(?:\.\d+)?)\s*(?::|\/|x)\s*(\d+(?:\.\d+)?)/);
+  if (ratioMatch) {
+    const width = Number(ratioMatch[1]);
+    const height = Number(ratioMatch[2]);
+
+    if (width > 0 && height > 0) {
+      return {
+        width,
+        height,
+        label: `${ratioMatch[1]}:${ratioMatch[2]}`,
+      };
+    }
+  }
+
+  if (/(vertical|reel|story|stories|tiktok|short)/.test(text)) {
+    return { width: 9, height: 16, label: "9:16" };
+  }
+
+  if (/(square|cuadrado)/.test(text)) {
+    return { width: 1, height: 1, label: "1:1" };
+  }
+
+  if (/(cinema|scope|wide|widescreen)/.test(text)) {
+    return { width: 2.35, height: 1, label: "2.35:1" };
+  }
+
+  return null;
+}
+
+function getProjectVideoRatio(project) {
+  const candidates = [
+    project.video_ratio,
+    project.videoRatio,
+    project.aspect_ratio,
+    project.aspectRatio,
+    project.ratio,
+    project.format,
+  ];
+
+  for (const candidate of candidates) {
+    const ratio = parseVideoRatio(candidate);
+    if (ratio) return ratio;
+  }
+
+  return { width: 16, height: 9, label: "16:9" };
+}
+
+function applyProjectVideoRatio(iframe, project) {
+  const wrap = iframe.closest(".project-video-inner");
+  if (!wrap) return;
+
+  const ratio = getProjectVideoRatio(project);
+  wrap.dataset.ratio = ratio.label;
+  wrap.style.setProperty("--video-ratio", String(ratio.width / ratio.height));
+  wrap.style.setProperty(
+    "--video-ratio-inverse",
+    String(ratio.height / ratio.width),
+  );
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
@@ -46,7 +154,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (descriptionEl) descriptionEl.textContent = description;
 
   if (vimeoEl) {
-    vimeoEl.src = project.vimeo;
+    applyProjectVideoRatio(vimeoEl, project);
+    vimeoEl.src = normalizeVimeoUrl(project.vimeo);
 
     setTimeout(() => {
       if (typeof initProjectVimeoPlayer === "function") {
