@@ -32,12 +32,15 @@
   position: absolute;
   inset: 0;
 
-  background-image: url("../../assets/backgroundd.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   background-color: var(--color-bg);
+}
+
+.projects-hero-bg.loaded {
+  background-image: url("../../assets/backgroundd.webp");
 }
 
 /* overlay */

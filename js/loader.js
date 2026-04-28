@@ -13,7 +13,8 @@
     return;
   }
 
-  const VISIBLE_TIME = 2500;
+  const isMobile = window.innerWidth <= 768;
+  const VISIBLE_TIME = isMobile ? 600 : 2500;
   const FADE_TIME = 320;
   let isClosing = false;
 

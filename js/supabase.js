@@ -11,5 +11,3 @@ async function testSupabase() {
   console.log("PROJECTS:", data);
   console.log("ERROR:", error);
 }
-
-testSupabase();

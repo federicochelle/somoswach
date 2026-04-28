@@ -4,11 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadMoreWrapper = loadMoreButton?.closest(".projects-actions");
   const projectsTrigger =
     document.querySelector("#projects-hero") || document.querySelector(".projects");
+  const projectsHeroBg = document.querySelector(".projects-hero-bg");
   if (!grid) return;
 
   const lang = window.location.pathname.includes("/en/") ? "en" : "es";
   const projectPage = lang === "en" ? "project.html" : "pages/project.html";
-  const PAGE_SIZE = 12;
+  const INITIAL_PROJECTS_LIMIT = 8;
+  const PAGE_SIZE = INITIAL_PROJECTS_LIMIT;
 
   const state = {
     activeFilter: "all",
@@ -87,6 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLoadMoreButton(filteredProjects);
   }
 
+  function observeProjectsHeroBackground() {
+    if (!projectsHeroBg || projectsHeroBg.classList.contains("loaded")) return;
+
+    if (!("IntersectionObserver" in window)) {
+      projectsHeroBg.classList.add("loaded");
+      return;
+    }
+
+    const backgroundObserver = new IntersectionObserver(
+      (entries, obs) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+
+        projectsHeroBg.classList.add("loaded");
+        obs.disconnect();
+      },
+      {
+        rootMargin: "200px 0px",
+      },
+    );
+
+    backgroundObserver.observe(projectsHeroBg);
+  }
+
   document.addEventListener("projects:filter-change", (event) => {
     state.activeFilter = (event.detail?.filter || "all").toLowerCase();
     state.visibleCount = PAGE_SIZE;
@@ -126,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (!projectsTrigger || !("IntersectionObserver" in window)) {
+    observeProjectsHeroBackground();
     loadProjects();
     return;
   }
@@ -139,9 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
       loadProjects();
     },
     {
-      rootMargin: "350px 0px",
+      rootMargin: "100px 0px",
     },
   );
 
   observer.observe(projectsTrigger);
+  observeProjectsHeroBackground();
 });
