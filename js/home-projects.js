@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = project[`title_${lang}`] || project.title_es || "";
     const client = project.client || "";
     const role = project[`role_${lang}`] || project.role_es || "";
-    const imageUrl = project.image_cf || project.image || "";
+    const imageUrl = window.publicProjectsData.getProjectImageUrl(project);
 
     return `
       <a class="project-card"
@@ -127,25 +127,16 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadProjects() {
     if (state.isLoaded || state.isLoading) return;
     state.isLoading = true;
-
-    const { data: projects, error } = await window.supabaseClient
-      .from("projects")
-      .select(
-        "slug, category, client, image, image_cf, title_es, title_en, role_es, role_en, published, position",
-      )
-      .eq("published", true)
-      .order("position", { ascending: true });
+    const projects = await window.publicProjectsData.fetchPublicProjects();
 
     state.isLoading = false;
 
-    if (error) {
-      console.error(error);
+    if (!projects.length) {
       if (loadMoreWrapper) loadMoreWrapper.hidden = true;
       loadMoreButton?.setAttribute("hidden", "");
-      return;
     }
 
-    state.projects = Array.isArray(projects) ? projects : [];
+    state.projects = projects;
     state.activeFilter = getActiveFilterFromDOM();
     state.isLoaded = true;
     renderProjects();

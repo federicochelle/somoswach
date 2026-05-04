@@ -113,16 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!slug) return;
 
-  const { data: projects, error } = await window.supabaseClient
-    .from("projects")
-    .select("*")
-    .eq("published", true)
-    .order("position", { ascending: true });
-
-  if (error) {
-    console.error("Error cargando projects:", error);
-    return;
-  }
+  const projects = await window.publicProjectsData.fetchPublicProjects();
 
   const project = projects.find((p) => p.slug === slug);
 
@@ -190,7 +181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       .map((p) => {
         const relatedTitle = p[`title_${lang}`] || p.title_es || "";
         const relatedRole = p[`role_${lang}`] || p.role_es || "";
-        const imageUrl = p.image_cf || p.image || "";
+        const imageUrl = window.publicProjectsData.getProjectImageUrl(p);
 
         return `
       <a
