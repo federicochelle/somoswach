@@ -1,4 +1,10 @@
-const PROJECTS_DATA_URL = "/assets/data/projects.json";
+const getProjectsDataUrl = () => {
+  const rootPath = window.location.pathname.includes("/somoswach/")
+    ? "/somoswach/"
+    : "/";
+
+  return `${window.location.origin}${rootPath}assets/data/projects.json`;
+};
 
 function normalizeProjects(projects) {
   if (!Array.isArray(projects)) return [];
@@ -20,7 +26,9 @@ function normalizeProjects(projects) {
 
 async function fetchPublicProjects() {
   try {
-    const response = await fetch(PROJECTS_DATA_URL);
+    console.log("Projects JSON URL:", getProjectsDataUrl());
+
+    const response = await fetch(getProjectsDataUrl());
 
     if (!response.ok) {
       console.error(
