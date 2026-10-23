@@ -1,0 +1,19 @@
+# Operating-system files
+.DS_Store
+._*
+
+# Local development files
+.env
+.env.*
+!.env.example
+
+# Logs, backups, and local artifacts
+*.log
+*.bak
+*.backup
+*.tmp
+*.tar
+*.tar.gz
+coverage/
+dist/
+node_modules/

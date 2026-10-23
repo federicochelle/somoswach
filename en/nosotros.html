@@ -57,8 +57,6 @@
       rel="stylesheet"
     />
 
-    <!-- (opcional) si querés priorizar la primera imagen -->
-    <link rel="preload" as="image" href="../assets/projects/itau/01.webp" />
   </head>
   <body class="page-about page-about--static">
     <!-- Header -->
@@ -144,7 +142,7 @@
       </div>
     </header>
 
-    <main class="about-page">
+    <main class="about-page" id="top">
       <!-- HERO -->
       <section class="about-hero section">
         <div class="container container-wide reveal-section">
@@ -405,7 +403,7 @@
 
           <ul class="footer-links">
             <li><a href="index.html">Projects</a></li>
-            <li><a href="#servicios">Services</a></li>
+            <li><a href="#footer">Services</a></li>
             <li><a href="nosotros.html">About</a></li>
           </ul>
         </div>
@@ -468,10 +466,8 @@
 
     <script src="../js/navbar.js"></script>
     <script src="../js/filters.js"></script>
-    <script src="../js/cardsgallery.js"></script>
     <script src="../js/nosotros-reveal.js"></script>
     <script src="../js/nosotros-counters.js"></script>
-    <script src="../js/languajebutton.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
